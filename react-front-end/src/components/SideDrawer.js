@@ -1,7 +1,6 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
-import Button from '@mui/material/Button';
 import List from '@mui/material/List';
 import Divider from '@mui/material/Divider';
 import ListItem from '@mui/material/ListItem';
@@ -11,7 +10,7 @@ import ListItemText from '@mui/material/ListItemText';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrophy } from "@fortawesome/free-solid-svg-icons";
 
-export default function TemporaryDrawer() {
+export default function SideDrawer() {
   const [state, setState] = React.useState({
     top: false,
     left: false,

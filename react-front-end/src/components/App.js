@@ -3,7 +3,6 @@ import axios from 'axios';
 import './App.css';
 import Nav from "./Nav.js";
 import Menu from "./Menu.js";
-import Drawer from "./Drawer.js";
 
 class App extends Component {
   constructor(props) {

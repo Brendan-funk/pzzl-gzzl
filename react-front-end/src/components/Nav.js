@@ -1,7 +1,6 @@
 import React from "react";
 import './Nav.scss'
-import './Drawer.js'
-import TemporaryDrawer from "./Drawer.js";
+import SideDrawer from "./SideDrawer.js";
 
 // get our fontawesome imports
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -15,8 +14,7 @@ export default function Nav(props) {
         <li><a href="#/">Logo</a></li>
         <li><a href="#/">tagline</a></li>
         <span id='trophy-icon' onClick={() => console.log('test')}>
-          {/* <FontAwesomeIcon icon={faTrophy}/> */}
-          <TemporaryDrawer />
+          <SideDrawer />
         </span>
       </ul>
     </nav>
