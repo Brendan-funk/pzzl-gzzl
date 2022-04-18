@@ -6,8 +6,8 @@ export default function Nav(props) {
   return (
     <nav>
       <ul>
-        <li>Logo</li>
-        <li>tagline</li>
+        <li><a href="#/">Logo</a></li>
+        <li><a href="#/">tagline</a></li>
       </ul>
     </nav>
   );
