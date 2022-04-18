@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import './App.css';
-import Nav from "./Nav.js"
-import Menu from "./Menu.js"
+import Nav from "./Nav.js";
+import Menu from "./Menu.js";
+import Drawer from "./Drawer.js";
 
 class App extends Component {
   constructor(props) {
@@ -34,6 +35,7 @@ class App extends Component {
         </button>        */}
         <Nav/>
         <Menu/>
+        <Drawer />
       </div>
     );
   }
