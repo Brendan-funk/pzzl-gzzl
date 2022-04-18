@@ -1,5 +1,5 @@
 import React from "react";
-// import './Menu.scss'
+import './Menu.scss'
 
 // get our fontawesome imports
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -9,10 +9,10 @@ export default function Menu(props) {
 
   return (
     <div id='menu'>
-      <span>a</span>
-      <span>b</span>
-      <span>c</span>
-      <span>d</span>
+      <a href='#/'><div><h2>Sudoku</h2></div></a>
+      <div>b</div>
+      <div>c</div>
+      <div>d</div>
     </div>
   );
 }
