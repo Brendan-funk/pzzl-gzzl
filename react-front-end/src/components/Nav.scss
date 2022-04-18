@@ -1,5 +1,5 @@
 nav {
-  border: 1px solid red;
+  border: 1px solid black;
 }
 
 nav ul {
@@ -16,4 +16,9 @@ li {
 li a {
   text-decoration: none;
   color: black;
+}
+
+#trophy-icon {
+  margin-left: auto;
+  margin-right: 40px;
 }
