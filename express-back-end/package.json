@@ -6,11 +6,13 @@
   "author": "garrettgsb",
   "license": "MIT",
   "scripts": {
-    "go": "nodemon server.js"
+    "go": "nodemon server.js",
+    "db-reset": "psql -U final_dev -d final_db < ./db/schema/create.sql && psql -U final_dev -d final_db < ./db/seeds/seed.sql"
   },
   "dependencies": {
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
-    "nodemon": "^1.18.7"
+    "nodemon": "^1.18.7",
+    "pg": "^8.7.3"
   }
 }
