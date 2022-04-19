@@ -9,7 +9,9 @@ export default function Nav(props) {
       <ul>
         <li><a href="#/">Logo</a></li>
         <li><a href="#/">tagline</a></li>
-        <span id='trophy-icon' onClick={() => console.log('test')}>
+        <li></li>
+        <h3>Username</h3>
+        <span id='trophy-icon'>
           <SideDrawer />
         </span>
       </ul>
