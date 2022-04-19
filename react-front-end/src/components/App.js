@@ -3,6 +3,7 @@ import axios from 'axios';
 import './App.css';
 import Nav from "./Nav.js";
 import Menu from "./Menu.js";
+import Footer from "./Footer.js";
 
 class App extends Component {
   constructor(props) {
@@ -34,6 +35,7 @@ class App extends Component {
         </button>        */}
         <Nav/>
         <Menu/>
+        <Footer />
       </div>
     );
   }
