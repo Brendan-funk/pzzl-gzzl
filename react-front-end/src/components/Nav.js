@@ -2,10 +2,6 @@ import React from "react";
 import './Nav.scss'
 import SideDrawer from "./SideDrawer.js";
 
-// get our fontawesome imports
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrophy } from "@fortawesome/free-solid-svg-icons";
-
 export default function Nav(props) {
 
   return (
