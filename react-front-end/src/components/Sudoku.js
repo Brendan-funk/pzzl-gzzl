@@ -6,11 +6,11 @@ export default function Nav(props) {
 
   const sudoku = generateSudoku();
   const puzzleArr = sudoku.puzzle;
-  const formattedPuzzle = puzzleArr.map(elm => {
+  const formattedPuzzle = puzzleArr.map((elm, i) => {
 
     let output = elm;
     if (elm === null) {
-      output = '#';
+      output = <input type='text' maxlength="1"></input>; 
     }
 
     return <td>{output}</td>;
@@ -61,7 +61,7 @@ export default function Nav(props) {
       }
     }
 
-    const gridObj = [
+    const gridArr = [
       row1,
       row2,
       row3,
@@ -73,7 +73,7 @@ export default function Nav(props) {
       row9
     ];
 
-    return gridObj;
+    return gridArr;
   }
   
 
