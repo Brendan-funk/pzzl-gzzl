@@ -1,9 +1,6 @@
 import React from "react";
 import './Nav.scss'
-
-// get our fontawesome imports
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrophy } from "@fortawesome/free-solid-svg-icons";
+import SideDrawer from "./SideDrawer.js";
 
 export default function Nav(props) {
 
@@ -12,8 +9,10 @@ export default function Nav(props) {
       <ul>
         <li><a href="#/">Logo</a></li>
         <li><a href="#/">tagline</a></li>
+        <li></li>
+        <h3>Username</h3>
         <span id='trophy-icon'>
-          <FontAwesomeIcon icon={faTrophy}/>
+          <SideDrawer />
         </span>
       </ul>
     </nav>
