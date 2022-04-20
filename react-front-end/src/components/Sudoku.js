@@ -10,7 +10,7 @@ export default function Nav(props) {
 
     let output = elm;
     if (elm === null) {
-      output = <input type='text' maxlength="1"></input>; 
+      output = <input type='text' name={`box-${i + 1}`} maxLength='1'></input>;
     }
 
     return <td>{output}</td>;
@@ -81,37 +81,42 @@ export default function Nav(props) {
 
   return (
     <section>
-      <table cellSpacing={0} cellPadding={0}>
-        <tbody>
-          <tr>
-            {sudokuRows[0]}
-          </tr>
-          <tr>
-            {sudokuRows[1]}
-          </tr>
-          <tr>
-            {sudokuRows[2]}
-          </tr>
-          <tr>
-            {sudokuRows[3]}
-          </tr>
-          <tr>
-            {sudokuRows[4]}
-          </tr>
-          <tr>
-            {sudokuRows[5]}
-          </tr>
-          <tr>
-            {sudokuRows[6]}
-          </tr>
-          <tr>
-            {sudokuRows[7]}
-          </tr>
-          <tr>
-            {sudokuRows[8]}
-          </tr>
-        </tbody>
-      </table>
+      <form action='/url' method='POST'>
+        <table cellSpacing={0} cellPadding={0}>
+          <tbody>
+            <tr>
+              {sudokuRows[0]}
+            </tr>
+            <tr>
+              {sudokuRows[1]}
+            </tr>
+            <tr>
+              {sudokuRows[2]}
+            </tr>
+            <tr>
+              {sudokuRows[3]}
+            </tr>
+            <tr>
+              {sudokuRows[4]}
+            </tr>
+            <tr>
+              {sudokuRows[5]}
+            </tr>
+            <tr>
+              {sudokuRows[6]}
+            </tr>
+            <tr>
+              {sudokuRows[7]}
+            </tr>
+            <tr>
+              {sudokuRows[8]}
+            </tr>
+          </tbody>
+        </table>
+        <button type='submit'>
+          Submit
+        </button>
+      </form>
     </section>
   );
 }
