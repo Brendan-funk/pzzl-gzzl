@@ -3,6 +3,7 @@ import axios from 'axios';
 import './App.css';
 import Nav from "./Nav.js";
 import Menu from "./Menu.js";
+import Menu3D from "./Menu3D.js";
 import Footer from "./Footer.js";
 import Sudoku from "./Sudoku.js"
 import checkAnswer from '../helpers/checkSudokuAnswer';
@@ -36,7 +37,8 @@ class App extends Component {
         </button>        */}
         <Nav/>
         {/* <Menu/> */}
-        <Sudoku checkAnswer={checkAnswer}/>
+        <Menu3D />
+        {/* <Sudoku checkAnswer={checkAnswer}/> */}
         <Footer />
       </div>
     );
