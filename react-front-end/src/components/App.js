@@ -5,7 +5,7 @@ import Nav from "./Nav.js";
 import Menu from "./Menu.js";
 import Footer from "./Footer.js";
 import Sudoku from "./Sudoku.js"
-
+import checkAnswer from '../helpers/checkSudokuAnswer';
 class App extends Component {
   constructor(props) {
     super(props)
@@ -36,7 +36,7 @@ class App extends Component {
         </button>        */}
         <Nav/>
         {/* <Menu/> */}
-        <Sudoku />
+        <Sudoku checkAnswer={checkAnswer}/>
         <Footer />
       </div>
     );

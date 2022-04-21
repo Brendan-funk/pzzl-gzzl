@@ -3,11 +3,12 @@ const formatGuess = function(puzz, answers) {
   for(let i = 0; i < puzz.length; i++) {
     const string = 'box-'+(i+1);
     if(answers[string]) {
-      output.push(answers[string]);
+      output.push(parseInt(answers[string]));
     } else {
       output.push(puzz[i]);
     }
   }
+  console.log(output);
   return output;
 }
 
@@ -24,4 +25,15 @@ const sudokuSolutionCheck = function(submission, answer) {
   return true;
 }
 
-module.exports = { formatGuess, sudokuSolutionCheck } 
+const checkAnswer = function(puzz,answers, key) {
+  
+  console.log(answers);
+  const guess = formatGuess(puzz,answers);
+  const isRight = sudokuSolutionCheck(guess,key);
+  console.log('guess', guess);
+  console.log('key', key);
+  if (isRight){
+    console.log('correct');
+  }
+}
+module.exports = checkAnswer;

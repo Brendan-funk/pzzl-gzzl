@@ -11,12 +11,24 @@ export default function Nav(props) {
 
     let output = elm;
     if (elm === null) {
-      output = <input type='text' name={`box-${i + 1}`} min='0' max='9' maxLength='1' autocomplete="off"></input>;
+      output = <input type='text'  name={`box-${i + 1}`} min='0' max='9' maxLength='1' autocomplete="off"></input>;
     }
 
     return <td>{output}</td>;
   });
-
+  const onSubmit = function(event) {
+    event.preventDefault();
+    
+    let answers = {}
+    for (let i = 1; i < 82; i++) {
+      const string = 'box-'+i;
+      if(document.getElementsByName(string).length !== 0) {
+        answers[string] = document.getElementsByName(string)[0].value;
+      }
+      
+    }
+    props.checkAnswer(puzzleArr, answers, sudoku.solution);
+  }
   const generateSudokuGrid = () => {
     const row1 = [];
     const row2 = [];
@@ -82,7 +94,7 @@ export default function Nav(props) {
 
   return (
     <section>
-      <form action='http://localhost:8001/sudoku' method='POST'>
+      <form id='sudokuForm'>
         <Timer title='Sudoku' />
         <table cellSpacing={0} cellPadding={0}>
           <tbody>
@@ -115,7 +127,7 @@ export default function Nav(props) {
             </tr>
           </tbody>
         </table>
-        <button type='submit'>
+        <button type='submit' onClick={(e) => onSubmit(e) }>
           Submit
         </button>
       </form>
