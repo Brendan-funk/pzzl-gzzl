@@ -2,7 +2,7 @@ const Express = require('express');
 const App = Express();
 const BodyParser = require('body-parser');
 const PORT = 8001;
-
+const testRoutes = require('./routes/sudoku');
 // Express Configuration
 App.use(BodyParser.urlencoded({ extended: false }));
 App.use(BodyParser.json());
@@ -25,8 +25,10 @@ db.connect()
 App.get('/api/data', (req, res) => res.json({
   message: "Seems to work!",
 }));
+App.use("/sudoku", testRoutes('ginga'));
 
 App.listen(PORT, () => {
   // eslint-disable-next-line no-console
   console.log(`Express seems to be listening on port ${PORT} so that's pretty good 👍`);
 });
+

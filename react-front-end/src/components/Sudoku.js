@@ -82,7 +82,7 @@ export default function Nav(props) {
 
   return (
     <section>
-      <form action='/sudoku' method='POST'>
+      <form action='http://localhost:8001/sudoku' method='POST'>
         <Timer title='Sudoku' />
         <table cellSpacing={0} cellPadding={0}>
           <tbody>
