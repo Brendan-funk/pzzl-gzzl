@@ -4,6 +4,7 @@ import './App.css';
 import Nav from "./Nav.js";
 import Menu from "./Menu.js";
 import Footer from "./Footer.js";
+import Sudoku from "./Sudoku.js"
 
 class App extends Component {
   constructor(props) {
@@ -34,7 +35,8 @@ class App extends Component {
           Fetch Data
         </button>        */}
         <Nav/>
-        <Menu/>
+        {/* <Menu/> */}
+        <Sudoku />
         <Footer />
       </div>
     );
