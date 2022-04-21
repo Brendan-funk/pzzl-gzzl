@@ -1,6 +1,7 @@
 import React from "react";
 import './Sudoku.scss'
 import { generateSudoku } from "../helpers/generateSudoku";
+import Timer from "./Timer";
 
 export default function Nav(props) {
 
@@ -82,6 +83,7 @@ export default function Nav(props) {
   return (
     <section>
       <form action='/url' method='POST'>
+        <Timer title='Sudoku' />
         <table cellSpacing={0} cellPadding={0}>
           <tbody>
             <tr>
