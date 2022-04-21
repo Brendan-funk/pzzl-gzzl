@@ -11,7 +11,7 @@ export default function Nav(props) {
 
     let output = elm;
     if (elm === null) {
-      output = <input type='text' name={`box-${i + 1}`} maxLength='1'></input>;
+      output = <input type='number' name={`box-${i + 1}`} min='0' max='9' maxLength='1' autocomplete="off"></input>;
     }
 
     return <td>{output}</td>;
@@ -82,7 +82,7 @@ export default function Nav(props) {
 
   return (
     <section>
-      <form action='/url' method='POST'>
+      <form action='/sudoku' method='POST'>
         <Timer title='Sudoku' />
         <table cellSpacing={0} cellPadding={0}>
           <tbody>
