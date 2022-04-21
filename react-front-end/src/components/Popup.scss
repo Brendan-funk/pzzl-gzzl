@@ -1,3 +1,5 @@
+$x-icon-margin: 120px;
+
 @keyframes load-text {
   0% {
     opacity: 0;
@@ -24,7 +26,20 @@
 
 .popup {
   width: 100%;
-  background: rgb(243, 112, 112);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  #x-left {
+    margin-right: $x-icon-margin;
+  }
+
+  #x-right {
+    margin-left: $x-icon-margin;
+  }
+
+  background: rgba(243, 112, 112, 0.554);
+  border: 3px solid rgb(243, 112, 112);
   color: rgb(3, 30, 41);
   margin-top: 10px;
   border-radius: 5px;
@@ -42,4 +57,10 @@
     animation-duration: 0.5s;
     animation-iteration-count: 1;
   }
+}
+
+.popup--failure {
+  background: rgba(243, 112, 112, 0.554);
+  border: 3px solid rgb(243, 112, 112);
+  color: rgb(3, 30, 41);
 }

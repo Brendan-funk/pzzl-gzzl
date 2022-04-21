@@ -2,7 +2,7 @@ import React from "react";
 import './Sudoku.scss'
 import { generateSudoku } from "../helpers/generateSudoku";
 import Timer from "./Timer";
-import Popup from "./Popup"
+import Failure from "./Failure";
 
 export default function Nav(props) {
 
@@ -131,7 +131,7 @@ export default function Nav(props) {
         <button type='submit' onClick={(e) => onSubmit(e)}>
           Submit
         </button>
-        <Popup message='Try again!' />
+        <Failure message='Try again!' />
       </form>
     </section>
   );
