@@ -18,10 +18,10 @@ export default function Menu(props) {
       0.1,
       100
     );
-    camera.position.set(0, 25, 25);
+    camera.position.set(0, 25, 35);
 
     // lighting
-    hemiLight = new THREE.HemisphereLight(0xffeeb1, 0x080820, 2.5);
+    hemiLight = new THREE.HemisphereLight(0xffeeb1, 0x080820, 3);
     scene.add(hemiLight);
 
     // const geometry = new THREE.IcosahedronGeometry( 10, 1 );
@@ -46,16 +46,23 @@ export default function Menu(props) {
 
     scene.add(new THREE.AxesHelper(500));
 
-    renderer = new THREE.WebGLRenderer();
+    // renderer = new THREE.WebGLRenderer();
+    renderer = new THREE.WebGLRenderer({
+
+      alpha: true,
+    
+      antialias: true
+    
+    });
     renderer.setSize(window.innerWidth, window.innerHeight);
     document.body.appendChild(renderer.domElement);
 
     // custom model loading
     var loader = new GLTFLoader();
-    loader.load('puzz-shell1.gltf', function(gltf) {
+    loader.load('puzz_head_v2.gltf', function(gltf) {
       var object = gltf.scene;
-      object.position.set(0, 18, 0);
-      object.scale.set(1.5, 1.5, 1.5);
+      object.position.set(0, 15, 0);
+      object.scale.set(0.5, 0.5, 0.5);
       // object.traverse((node) => {
       //   if (!node.isMesh) return;
       //   node.material.wireframe = true;
@@ -63,16 +70,16 @@ export default function Menu(props) {
       scene.add(object);
     });
 
-    loader.load('puzz-spinner1.gltf', function(gltf) {
-      spinner = gltf.scene;
-      spinner.position.set(0, 18, 0);
-      spinner.scale.set(1.5, 1.5, 1.5);
-      // spinner.traverse((node) => {
-      //   if (!node.isMesh) return;
-      //   node.material.wireframe = true;
-      // });
-      scene.add(spinner);
-    });
+    // loader.load('puzz-spinner1.gltf', function(gltf) {
+    //   spinner = gltf.scene;
+    //   spinner.position.set(0, 18, 0);
+    //   spinner.scale.set(1.5, 1.5, 1.5);
+    //   // spinner.traverse((node) => {
+    //   //   if (!node.isMesh) return;
+    //   //   node.material.wireframe = true;
+    //   // });
+    //   scene.add(spinner);
+    // });
   };
 
   window.addEventListener('keydown', (e) => {
