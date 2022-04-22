@@ -2,13 +2,16 @@ import React from "react";
 import './Menu3D.scss'
 
 import * as THREE from 'three';
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 
 export default function Menu(props) {
 
   let scene, camera, renderer, cube, hemiLight;
 
   const init = () => {
+
     scene = new THREE.Scene();
+    scene.background = new THREE.Color( '#ffffff' );
     camera = new THREE.PerspectiveCamera(
       75,
       window.innerWidth / window.innerHeight,
@@ -27,7 +30,7 @@ export default function Menu(props) {
     const material = new THREE.MeshLambertMaterial( {color: 0x3b8fa8} );
     cube = new THREE.Mesh( geometry, material );
     cube.position.set(0, 25, 0);
-    scene.add(cube);
+    // scene.add(cube);
 
     // right cube
     const geometry1 = new THREE.BoxGeometry(10, 10, 10);
@@ -48,6 +51,31 @@ export default function Menu(props) {
     renderer = new THREE.WebGLRenderer();
     renderer.setSize(window.innerWidth, window.innerHeight);
     document.body.appendChild(renderer.domElement);
+
+
+    
+    // const loader = new GLTFLoader();
+    // loader.load('keycap_row_0.gltf', (gltf) => {
+    //   console.log(gltf);
+    //   const root = gltf.scene;
+    //   root.position.set(15, 25, 0)
+    //   scene.add(root);
+    // }, (xhr) => {
+    //   console.log((xhr.loaded/xhr.total * 100) + "% loaded");
+    // }, (error) => {
+    //   console.log("An error occured");
+    // });
+
+    var loader = new GLTFLoader();
+    loader.load('puzz-shell.gltf', function(gltf) {
+      var object = gltf.scene;
+      object.position.set(0, 18, 0)
+      object.traverse((node) => {
+        if (!node.isMesh) return;
+        node.material.wireframe = true;
+      });
+      scene.add(object);
+    });
 
     window.addEventListener('keydown', (e) => {
       if (e.key === "ArrowRight") {
@@ -76,7 +104,7 @@ export default function Menu(props) {
   animate();
 
   return (
-    <div class='menu-3d'>
+    <div className='menu-3d'>
       {/* <canvas>
       </canvas> */}
     </div>
