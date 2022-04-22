@@ -1,0 +1,132 @@
+{
+    "asset" : {
+        "generator" : "Khronos glTF Blender I/O v1.6.16",
+        "version" : "2.0"
+    },
+    "scene" : 0,
+    "scenes" : [
+        {
+            "name" : "Scene",
+            "nodes" : [
+                0
+            ]
+        }
+    ],
+    "nodes" : [
+        {
+            "mesh" : 0,
+            "name" : "puzz_v2.014",
+            "rotation" : [
+                0.39946606755256653,
+                0.25660285353660583,
+                0.630473256111145,
+                -0.6140727400779724
+            ],
+            "scale" : [
+                0.30000001192092896,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "translation" : [
+                1.3004401922225952,
+                52.77396774291992,
+                9.631427764892578
+            ]
+        }
+    ],
+    "materials" : [
+        {
+            "doubleSided" : true,
+            "name" : "StandardAF7515",
+            "pbrMetallicRoughness" : {
+                "baseColorFactor" : [
+                    0.686274528503418,
+                    0.4588235020637512,
+                    0.08235294371843338,
+                    1
+                ],
+                "metallicFactor" : 0
+            }
+        }
+    ],
+    "meshes" : [
+        {
+            "name" : "puzz_v2.014",
+            "primitives" : [
+                {
+                    "attributes" : {
+                        "POSITION" : 0,
+                        "NORMAL" : 1,
+                        "TEXCOORD_0" : 2
+                    },
+                    "indices" : 3,
+                    "material" : 0
+                }
+            ]
+        }
+    ],
+    "accessors" : [
+        {
+            "bufferView" : 0,
+            "componentType" : 5126,
+            "count" : 14,
+            "max" : [
+                121.79039764404297,
+                64.13313293457031,
+                -30.185680389404297
+            ],
+            "min" : [
+                10.14447021484375,
+                -56.061161041259766,
+                -128.222900390625
+            ],
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 1,
+            "componentType" : 5126,
+            "count" : 14,
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 2,
+            "componentType" : 5126,
+            "count" : 14,
+            "type" : "VEC2"
+        },
+        {
+            "bufferView" : 3,
+            "componentType" : 5123,
+            "count" : 72,
+            "type" : "SCALAR"
+        }
+    ],
+    "bufferViews" : [
+        {
+            "buffer" : 0,
+            "byteLength" : 168,
+            "byteOffset" : 0
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 168,
+            "byteOffset" : 168
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 112,
+            "byteOffset" : 336
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 144,
+            "byteOffset" : 448
+        }
+    ],
+    "buffers" : [
+        {
+            "byteLength" : 592,
+            "uri" : "data:application/octet-stream;base64,0TRIQqE+YMIb34/CvsdaQruYiD88oG/CwE8iQQpXsMH4JbTCpmWRQtdXR8JEK9zCR1e9QgxcA8I01ybCBcXGQn8NxEFGfPHBtmTqQi1+1sEb7J/Cr5TzQrGz8kHSE4nCTnGaQqwN40CRUMTCbyoDQrgSfcEQOQDDyPsUQooCJEIYtejCN36jQipEgELtla3CLF1tQkU1aUJTwkHCm4NrQZLlC0KYNJzCWpYBv6QwPb4Wp1c/orgAv0PPCb4Kllo/UrUKv84lHb5IjFM/6FMAP3Cnuz16RFy//UvuvkiKKb48lV4/C+Psvjol7L0qBmE/32oKP7KS0z3juFW/MGYJP4lfFz6aqVS/o7gAP0TPCT4Kllq/NobvPkAU+D2qH2C/SZPtPlC1Kj5MuF6/fNAAP4a4NT73g1i/YSH/voCtq73C6Vw/3SsKvySH1b3f2VU/zfxTPy68wT6zS84+AAAAAJaUKz8sDsQ+fldUP1AtHT////8yeDO+Pn+PMD5+jMQ+AACAP7ZRHj+VAC4+IpMePzs6aj8AAIA/lA0sP45dHj9WKAA/L9EgP04oqD6OxB8/BIeoPgrZxj7Erf8+kBbDPgQAAQAAAAAAAQACAAkAAwAAAAkAAAACAAMABgAEAAMABAAAAAUAAQAEAAUABAAGAAUABgAHAAgABgADAAcABgAIAAgAAwAJAAgACQAKAAsABwAIAAoACwAIAAwABQAHAAwABwALAA0ADAALAA0ACwAKAA0AAQAMAAwAAQAFAAIAAQANAAoACQACAAoAAgANAA=="
+        }
+    ]
+}
