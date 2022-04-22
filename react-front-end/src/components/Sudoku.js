@@ -8,7 +8,7 @@ import axios from 'axios';
 export default function Nav(props) {
 
   const [seconds, setSeconds] = useState(0);
-
+  const [attempts, setAttempts] = useState(0);
   const sudoku = props.sudoku;
   const puzzleArr = sudoku.puzzle;
   const formattedPuzzle = puzzleArr.map((elm, i) => {
@@ -22,7 +22,7 @@ export default function Nav(props) {
   });
   const onSubmit = function(event) {
     event.preventDefault();
-    
+    setAttempts(attempts + 1);
     let answers = {}
     for (let i = 1; i < 82; i++) {
       const string = 'box-'+i;
@@ -33,10 +33,10 @@ export default function Nav(props) {
     }
     const isRight = props.checkAnswer(puzzleArr, answers, sudoku.solution);
     if (isRight) {
-      let deltaRating = rating(300, 2);
+      let deltaRating = rating(seconds, attempts);
       axios.post(`http://localhost:8001/rating`, {
         id: 1,
-        ratingChange: 3
+        ratingChange: deltaRating
       })
     }
   }
