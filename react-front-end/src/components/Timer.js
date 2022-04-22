@@ -4,7 +4,10 @@ import { useEffect, useState } from "react";
 
 export default function Timer(props) {
 
-  const [seconds, setSeconds] = useState(0);
+  // deconstruct props
+  let {seconds, setSeconds} = props;
+
+  // const [seconds, setSeconds] = useState(0);
   const [isActive, setIsActive] = useState(false);
 
   function toggle() {

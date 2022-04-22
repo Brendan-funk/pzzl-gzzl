@@ -7,15 +7,9 @@ import rating from "../helpers/ratingIncrease";
 import axios from 'axios';
 export default function Nav(props) {
 
-  const [time, setTime] = useState(0);
+  const [seconds, setSeconds] = useState(0);
 
-  const sendSeconds = () => {
-    console.log('sent');
-  };
-
-  // const sudoku = generateSudoku();
   const sudoku = props.sudoku;
-  console.log('sudoku obj:', sudoku);
   const puzzleArr = sudoku.puzzle;
   const formattedPuzzle = puzzleArr.map((elm, i) => {
 
@@ -113,7 +107,7 @@ export default function Nav(props) {
     <section>
       <div class='spacer'></div>
       <form id='sudokuForm'>
-        <Timer title='Sudoku' setTime={(x) => setTime(x)} />
+        <Timer title='Sudoku' seconds={seconds} setSeconds={(x) => setSeconds(x)} />
         <table cellSpacing={0} cellPadding={0}>
           <tbody>
             <tr>
