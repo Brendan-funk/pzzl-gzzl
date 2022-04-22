@@ -21,16 +21,14 @@ export default function Menu(props) {
     camera.position.set(0, 25, 25);
 
     // lighting
-    hemiLight = new THREE.HemisphereLight(0xffeeb1, 0x080820, 2);
+    hemiLight = new THREE.HemisphereLight(0xffeeb1, 0x080820, 2.5);
     scene.add(hemiLight);
 
-    // const geometry = new THREE.BoxGeometry(2, 2, 2);
-    // const geometry = new THREE.SphereGeometry( 15, 32, 16 );
-    const geometry = new THREE.IcosahedronGeometry( 10, 1 );
-    const material = new THREE.MeshLambertMaterial( {color: 0x3b8fa8} );
-    cube = new THREE.Mesh( geometry, material );
-    cube.position.set(0, 25, 0);
-    // scene.add(cube);
+    // const geometry = new THREE.IcosahedronGeometry( 10, 1 );
+    // const material = new THREE.MeshLambertMaterial( {color: 0x3b8fa8} );
+    // cube = new THREE.Mesh( geometry, material );
+    // cube.position.set(0, 25, 0);
+    // // scene.add(cube);
 
     // right cube
     const geometry1 = new THREE.BoxGeometry(10, 10, 10);
@@ -79,9 +77,9 @@ export default function Menu(props) {
 
   window.addEventListener('keydown', (e) => {
     if (e.key === "ArrowRight") {
-      spinner.rotation.y += 1;
-    } else if (e.key === "ArrowLeft") {
       spinner.rotation.y -= 1;
+    } else if (e.key === "ArrowLeft") {
+      spinner.rotation.y += 1;
     }
   });
 
@@ -103,8 +101,6 @@ export default function Menu(props) {
   animate();
 
   return (
-    <div className='menu-3d'>
-    </div>
-    
+    <div className='menu-3d'></div>
   );
 }
