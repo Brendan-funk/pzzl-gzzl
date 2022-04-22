@@ -7,12 +7,20 @@ import Menu3D from "./Menu3D.js";
 import Footer from "./Footer.js";
 import Sudoku from "./Sudoku.js"
 import checkAnswer from '../helpers/checkSudokuAnswer';
+import { generateSudoku } from "../helpers/generateSudoku";
+
 class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
       message: 'Click the button to load data!'
     }
+  }
+
+  getSudoku = () => {
+    const sudoku = generateSudoku();
+    console.log('---Sudoku generated---')
+    return sudoku;
   }
 
   fetchData = () => {
@@ -37,8 +45,8 @@ class App extends Component {
         </button>        */}
         <Nav/>
         {/* <Menu/> */}
-        {/*Menu3D */}
-        {<Sudoku checkAnswer={checkAnswer}/>}
+        {/* <Menu3D/> */}
+        <Sudoku checkAnswer={checkAnswer} sudoku={this.getSudoku()} />
         <Footer />
       </div>
     );
