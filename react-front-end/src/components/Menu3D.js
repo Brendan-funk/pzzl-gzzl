@@ -52,28 +52,16 @@ export default function Menu(props) {
     renderer.setSize(window.innerWidth, window.innerHeight);
     document.body.appendChild(renderer.domElement);
 
-
-    
-    // const loader = new GLTFLoader();
-    // loader.load('keycap_row_0.gltf', (gltf) => {
-    //   console.log(gltf);
-    //   const root = gltf.scene;
-    //   root.position.set(15, 25, 0)
-    //   scene.add(root);
-    // }, (xhr) => {
-    //   console.log((xhr.loaded/xhr.total * 100) + "% loaded");
-    // }, (error) => {
-    //   console.log("An error occured");
-    // });
-
+    // custom model loading
     var loader = new GLTFLoader();
     loader.load('puzz-shell.gltf', function(gltf) {
       var object = gltf.scene;
-      object.position.set(0, 18, 0)
-      object.traverse((node) => {
-        if (!node.isMesh) return;
-        node.material.wireframe = true;
-      });
+      object.position.set(0, 18, 0);
+      object.scale.set(1.5, 1.5, 1.5);
+      // object.traverse((node) => {
+      //   if (!node.isMesh) return;
+      //   node.material.wireframe = true;
+      // });
       scene.add(object);
     });
 
@@ -105,8 +93,6 @@ export default function Menu(props) {
 
   return (
     <div className='menu-3d'>
-      {/* <canvas>
-      </canvas> */}
     </div>
     
   );
