@@ -34,6 +34,9 @@ const checkAnswer = function(puzz,answers, key) {
   console.log('key', key);
   if (isRight){
     console.log('correct');
+    return true;
+  } else {
+    return false;
   }
 }
 module.exports = checkAnswer;

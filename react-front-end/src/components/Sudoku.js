@@ -3,7 +3,8 @@ import './Sudoku.scss'
 import { generateSudoku } from "../helpers/generateSudoku";
 import Timer from "./Timer";
 import Failure from "./Failure";
-
+import rating from "../helpers/ratingIncrease";
+import axios from 'axios';
 export default function Nav(props) {
 
   const sudoku = generateSudoku();
@@ -28,7 +29,14 @@ export default function Nav(props) {
       }
       
     }
-    props.checkAnswer(puzzleArr, answers, sudoku.solution);
+    const isRight = props.checkAnswer(puzzleArr, answers, sudoku.solution);
+    if (isRight) {
+      let deltaRating = rating(300, 2);
+      axios.post(`http://localhost:8001/rating`, {
+        id: 1,
+        ratingChange: 3
+      })
+    }
   }
   const generateSudokuGrid = () => {
     const row1 = [];

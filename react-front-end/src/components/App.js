@@ -37,8 +37,8 @@ class App extends Component {
         </button>        */}
         <Nav/>
         {/* <Menu/> */}
-        <Menu3D />
-        {/* <Sudoku checkAnswer={checkAnswer}/> */}
+        {/*Menu3D */}
+        {<Sudoku checkAnswer={checkAnswer}/>}
         <Footer />
       </div>
     );
