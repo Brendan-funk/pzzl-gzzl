@@ -6,12 +6,12 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 
 export default function Menu(props) {
 
-  let scene, camera, renderer, cube, hemiLight;
+  let scene, camera, renderer, cube, hemiLight, spinner;
 
   const init = () => {
 
     scene = new THREE.Scene();
-    scene.background = new THREE.Color( '#ffffff' );
+    scene.background = new THREE.Color( '#2e2e2e' );
     camera = new THREE.PerspectiveCamera(
       75,
       window.innerWidth / window.innerHeight,
@@ -21,7 +21,7 @@ export default function Menu(props) {
     camera.position.set(0, 25, 25);
 
     // lighting
-    hemiLight = new THREE.HemisphereLight(0xffeeb1, 0x080820, 4);
+    hemiLight = new THREE.HemisphereLight(0xffeeb1, 0x080820, 2);
     scene.add(hemiLight);
 
     // const geometry = new THREE.BoxGeometry(2, 2, 2);
@@ -54,7 +54,7 @@ export default function Menu(props) {
 
     // custom model loading
     var loader = new GLTFLoader();
-    loader.load('puzz-shell.gltf', function(gltf) {
+    loader.load('puzz-shell1.gltf', function(gltf) {
       var object = gltf.scene;
       object.position.set(0, 18, 0);
       object.scale.set(1.5, 1.5, 1.5);
@@ -65,14 +65,25 @@ export default function Menu(props) {
       scene.add(object);
     });
 
-    window.addEventListener('keydown', (e) => {
-      if (e.key === "ArrowRight") {
-        cube.rotation.y += 0.2;
-      } else if (e.key === "ArrowLeft") {
-        cube.rotation.y -= 0.2;
-      }
+    loader.load('puzz-spinner1.gltf', function(gltf) {
+      spinner = gltf.scene;
+      spinner.position.set(0, 18, 0);
+      spinner.scale.set(1.5, 1.5, 1.5);
+      // spinner.traverse((node) => {
+      //   if (!node.isMesh) return;
+      //   node.material.wireframe = true;
+      // });
+      scene.add(spinner);
     });
   };
+
+  window.addEventListener('keydown', (e) => {
+    if (e.key === "ArrowRight") {
+      spinner.rotation.y += 1;
+    } else if (e.key === "ArrowLeft") {
+      spinner.rotation.y -= 1;
+    }
+  });
 
   function animate() {
     requestAnimationFrame(animate);
