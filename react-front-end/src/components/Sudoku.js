@@ -4,6 +4,7 @@ import { generateSudoku } from "../helpers/generateSudoku";
 import Timer from "./Timer";
 import Failure from "./Failure";
 import rating from "../helpers/ratingIncrease";
+import Rank from "./Rank";
 import axios from 'axios';
 export default function Nav(props) {
 
