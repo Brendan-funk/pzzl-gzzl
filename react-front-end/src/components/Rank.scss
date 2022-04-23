@@ -1,0 +1,101 @@
+$rank-title-margin: 25px;
+$border-rad: 15px;
+$title-color: #6282b3;
+$secondary-color: white;
+
+#blur-buddy {
+  position: absolute;
+  height: 100vh;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+#rank {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 500px;
+  height: 300px;
+  background-color: $title-color;
+  border-radius: $border-rad;
+
+  #rank-title {
+    width: 100%;
+    height: 100px;
+    display: flex;
+    align-items: center;
+
+
+    h1 {
+      display: inline-block;
+      justify-self: flex-start;
+      margin-left: $rank-title-margin;
+      font-weight: 300;
+    }
+  
+    p {
+      display: inline-block;
+      margin-left: auto;
+      margin-right: $rank-title-margin;
+      font-size: 22px;
+      font-weight: bold;
+    }
+  }
+
+  
+
+  .wrapper {
+    width: 100%;
+    height: 200px;
+    justify-content: center;
+    align-items: center;
+    border-bottom-left-radius: $border-rad;
+    border-bottom-right-radius: $border-rad;
+    background-color: $secondary-color;
+    display: flex;
+    flex-direction: column;
+
+    h2 {
+      font-size: 42px;
+      padding-top: 10px;
+      color: rgb(63, 143, 84);
+    }
+
+    button {
+      
+    }
+    
+    
+  }
+}
+
+// button from 'https://getcssscan.com/css-buttons-examples'
+.button-54 {
+  font-family: "Open Sans", sans-serif;
+  font-size: 16px;
+  letter-spacing: 2px;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: #000;
+  cursor: pointer;
+  border: 3px solid;
+  padding: 0.25em 0.5em;
+  box-shadow: 1px 1px 0px 0px, 2px 2px 0px 0px, 3px 3px 0px 0px, 4px 4px 0px 0px, 5px 5px 0px 0px;
+  position: relative;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button-54:active {
+  box-shadow: 0px 0px 0px 0px;
+  top: 5px;
+  left: 5px;
+}
+
+@media (min-width: 768px) {
+  .button-54 {
+    padding: 0.25em 0.75em;
+  }
+}
