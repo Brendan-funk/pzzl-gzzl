@@ -47,7 +47,7 @@ class App extends Component {
         <Nav/>
         {/* <Menu/> */}
         {/* <Menu3D/> */}
-        <Rank />
+        <Rank value='+22' rank='359' />
         <Sudoku checkAnswer={checkAnswer} sudoku={this.getSudoku()} />
         <Footer />
       </div>
