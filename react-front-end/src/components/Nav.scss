@@ -1,6 +1,8 @@
+$nav-color: #6282b3;
+
 nav {
-  border: 1px solid white;
-  background-color: white;
+  border: 1px solid $nav-color;
+  background-color: $nav-color;
 }
 
 #nav-container {

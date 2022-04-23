@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import './App.css';
 import Nav from "./Nav.js";
+import Rank from "./Rank.js";
 import Menu from "./Menu.js";
 import Menu3D from "./Menu3D.js";
 import Footer from "./Footer.js";
@@ -46,6 +47,7 @@ class App extends Component {
         <Nav/>
         {/* <Menu/> */}
         {/* <Menu3D/> */}
+        <Rank value='+22' rank='359' />
         <Sudoku checkAnswer={checkAnswer} sudoku={this.getSudoku()} />
         <Footer />
       </div>
