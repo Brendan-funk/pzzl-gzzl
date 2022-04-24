@@ -9,15 +9,20 @@ import ListItemText from '@mui/material/ListItemText';
 // get our fontawesome imports
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrophy } from "@fortawesome/free-solid-svg-icons";
+import getLeaderboard from '../helpers/getLeaderboard';
+
+const useState = require('react').useState;
 
 export default function SideDrawer() {
-  const [state, setState] = React.useState({
+  const {names} = getLeaderboard();
+  const [state, setState] = useState({
     top: false,
     left: false,
     bottom: false,
     right: false,
   });
-
+  
+  
   const toggleDrawer = (anchor, open) => (event) => {
     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
       return;
@@ -34,7 +39,7 @@ export default function SideDrawer() {
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List>
-        {['Player 1', 'Player 2', 'Player 3'].map((text, index) => (
+        {names.map((text, index) => (
           <ListItem button key={text}>
             <ListItemText primary={text} />
           </ListItem>
@@ -43,7 +48,7 @@ export default function SideDrawer() {
       <Divider />
     </Box>
   );
-
+  
   return (
     <div>
       <FontAwesomeIcon icon={faTrophy} onClick={toggleDrawer('right', true)} />

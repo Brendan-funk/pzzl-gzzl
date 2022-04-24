@@ -62,6 +62,15 @@ App.post('/rating', (req, res) => {
       WHERE id = $2`, [newRating, userId])
   });
 });
+
+App.get('/leaderboard', (req, res) => {
+  db.query(`SELECT name, rating FROM users
+            ORDER BY rating DESC
+            LIMIT 20` )
+  .then(leaderboard => {
+    res.json(leaderboard.rows);
+  })
+})
 App.get('/rating', (req,res) => {
   console.log('works');
 })

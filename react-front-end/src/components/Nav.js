@@ -2,8 +2,10 @@ import React from "react";
 import './Nav.scss'
 import SideDrawer from "./SideDrawer.js";
 
-export default function Nav(props) {
 
+
+export default function Nav(props) {
+ 
   return (
     <div id="nav-container">
       <nav>
@@ -13,7 +15,7 @@ export default function Nav(props) {
           <li></li>
           <h3>Username</h3>
           <span id='trophy-icon'>
-            <SideDrawer />
+            <SideDrawer/>
           </span>
         </ul>
       </nav>
