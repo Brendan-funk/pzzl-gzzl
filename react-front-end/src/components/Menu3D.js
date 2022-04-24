@@ -209,7 +209,6 @@ export default function Menu(props) {
 
   init();
   animate();
-  console.log(scene);
 
   return (
     <>

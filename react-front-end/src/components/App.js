@@ -9,6 +9,7 @@ import Footer from "./Footer.js";
 import Sudoku from "./Sudoku.js"
 import checkAnswer from '../helpers/checkSudokuAnswer';
 import { generateSudoku } from "../helpers/generateSudoku";
+import ModeHandler from './ModeHandler';
 
 class App extends Component {
   constructor(props) {
@@ -41,8 +42,9 @@ class App extends Component {
     return (
       <div className="App">
         <Nav/>
+        <ModeHandler checkAnswer={checkAnswer} sudoku={this.getSudoku()}/>
         {/* <Menu/> */}
-        <Menu3D/>
+        {/* <Menu3D/> */}
         {/* <Sudoku checkAnswer={checkAnswer} sudoku={this.getSudoku()} /> */}
         <Footer />
       </div>
