@@ -11,7 +11,7 @@ import { TextGeometry } from 'three/examples/jsm/geometries/TextGeometry';
 
 export default function Menu(props) {
 
-  let scene, camera, renderer, cube, hemiLight, spinner, spinnerGroup;
+  let scene, camera, renderer, cube, hemiLight, spinner, spinnerGroup, shouldRotate, rotationDir, canInput;
 
   const init = () => {
 
@@ -32,14 +32,7 @@ export default function Menu(props) {
     hemiLight = new THREE.HemisphereLight(0xffeeb1, 0x080820, 1.5);
     scene.add(hemiLight);
 
-    //----------------------------
-    // --- helpers for testing ---
-    //----------------------------
-    // scene.add(new THREE.AxesHelper(500));
-    // const controls = new OrbitControls( camera, renderer.domElement );
-    
 
-    // renderer = new THREE.WebGLRenderer();
     renderer = new THREE.WebGLRenderer({ antialias: true });
     renderer.setPixelRatio( window.devicePixelRatio );
     renderer.setSize(window.innerWidth, window.innerHeight);
@@ -48,8 +41,13 @@ export default function Menu(props) {
 
     const light = new THREE.DirectionalLight( 0xFFFFFF, 1 );
     light.position.set(0, 25, 30);
-    const helper = new THREE.DirectionalLightHelper( light, 5 );
     scene.add( light );
+
+    //----------------------------
+    // --- helpers for testing ---
+    //----------------------------
+    scene.add(new THREE.AxesHelper(500));
+    const controls = new OrbitControls( camera, renderer.domElement );
 
     // ----------------------------
     // --- custom model loading ---
@@ -91,13 +89,14 @@ export default function Menu(props) {
     //--- Menu Text ---
     //-----------------
 
-    // part 2 - true type font loader
+    // custom font loader
     const fontLoader = new FontLoader();
     const ttfLoader = new TTFLoader();
     ttfLoader.load('fonts3D/jet_brains_mono_regular.ttf', (json) => {
-      // First parse the font.
+      // parse the custom font
       const jetBrainsFont = fontLoader.parse(json);
-      // Use parsed font as normal.
+
+      // Use parsed font as normal text geometry
       const textGeometry = new TextGeometry('Pzzl     Gzzl', {
         height: 2,
         size: 8,
@@ -108,13 +107,15 @@ export default function Menu(props) {
       textMesh.position.x = -43;
       textMesh.position.y = 25;
       textMesh.position.z = -10;
+      // add mesh to scene
       scene.add( textMesh );
     });
 
     ttfLoader.load('fonts3D/jet_brains_mono_regular.ttf', (json) => {
-      // First parse the font.
+      // parse the custom font
       const jetBrainsFont = fontLoader.parse(json);
-      // Use parsed font as normal.
+
+      // Use parsed font as normal text geometry
       const textGeometry = new TextGeometry('SUDOKU', {
         height: 1,
         size: 2,
@@ -135,16 +136,35 @@ export default function Menu(props) {
   };
 
   window.addEventListener('keydown', (e) => {
-    if (e.key === "ArrowRight") {
-      spinnerGroup.rotation.y += (Math.PI / 24);
-    } else if (e.key === "ArrowLeft") {
-      spinnerGroup.rotation.y -= (Math.PI / 24);
+    const initialRot = spinnerGroup.rotation.y;
+    canInput = true;
+    if (canInput) {
+      if (e.key === "ArrowRight") {
+        shouldRotate = true;
+        rotationDir = 'right';
+      } else if (e.key === "ArrowLeft") {
+        shouldRotate = true;
+        rotationDir = 'left';
+      }
     }
   });
 
+  // rotation function for the animation loop
+  const menuRotate = (rotate, direction) => {
+    if (rotate && direction === 'right') {
+      const startRot = 0;
+      if (spinnerGroup.rotation.y < Math.PI) {
+        spinnerGroup.rotation.y += (Math.PI / 24);
+      }
+    } else if (rotate && direction === 'left') {
+      spinnerGroup.rotation.y -= (Math.PI / 24);
+    }
+  };
+
+  // animation loop, called once per frame
   function animate() {
     requestAnimationFrame(animate);
-
+    menuRotate(shouldRotate, rotationDir);
     renderer.render(scene, camera);
   }
 
