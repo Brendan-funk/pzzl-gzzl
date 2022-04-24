@@ -47,7 +47,7 @@ export default function Menu(props) {
     //----------------------------
     // --- helpers for testing ---
     //----------------------------
-    scene.add(new THREE.AxesHelper(500));
+    // scene.add(new THREE.AxesHelper(500));
     // const controls = new OrbitControls( camera, renderer.domElement );
 
     // ----------------------------
@@ -167,6 +167,8 @@ export default function Menu(props) {
         shouldRotate = true;
         rotationDir = 'left';
         canInput = false;
+      } else if (e.key === "Enter") {
+        console.log('enter pressed');
       }
     }
   });
@@ -207,8 +209,14 @@ export default function Menu(props) {
 
   init();
   animate();
+  console.log(scene);
 
   return (
-    <div className='menu-3d'></div>
+    <>
+      <div className='menu-3d'></div>
+      {/* <div id='menu-click'>
+        <div></div>
+      </div> */}
+    </>
   );
 }

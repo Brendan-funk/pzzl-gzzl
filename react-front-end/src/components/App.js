@@ -40,10 +40,6 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        {/* <h1>{ this.state.message }</h1>
-        <button onClick={this.fetchData} >
-          Fetch Data
-        </button>        */}
         <Nav/>
         {/* <Menu/> */}
         <Menu3D/>
