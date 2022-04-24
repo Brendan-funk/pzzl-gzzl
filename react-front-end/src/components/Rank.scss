@@ -4,11 +4,17 @@ $title-color: #6282b3;
 $secondary-color: white;
 $blur-color: rgba(0, 0, 0, 0.6);
 
-#blur-buddy {
+.blur {
   position: absolute;
   height: 100vh;
   width: 100%;
   background-color: $blur-color;
+  display: none;
+}
+
+// must be after .blur
+.blur--show {
+  display: block;
 }
 
 #rank {

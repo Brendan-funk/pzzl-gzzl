@@ -1,10 +1,16 @@
 import React from "react";
-import './Rank.scss'
+import './Rank.scss';
+import classNames from "classnames";
 
 export default function Rank(props) {
 
+  // if props.show is true, the componenet will render
+  const blurClass = classNames('blur', {
+    'blur--show': props.show
+ });
+
   return (
-    <div id='blur-buddy'>
+    <div className={blurClass} >
       <div id="rank">
         <div id='rank-title'>
           <h1>Ranked Rating</h1>
