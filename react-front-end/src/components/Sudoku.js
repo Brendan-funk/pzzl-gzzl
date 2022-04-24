@@ -9,6 +9,7 @@ import axios from 'axios';
 export default function Nav(props) {
 
   const [seconds, setSeconds] = useState(0);
+  const [showRank, setShowRank] = useState(false);
 
   const sudoku = props.sudoku;
   const puzzleArr = sudoku.puzzle;
@@ -38,7 +39,8 @@ export default function Nav(props) {
       axios.post(`http://localhost:8001/rating`, {
         id: 1,
         ratingChange: 3
-      })
+      });
+      setShowRank(true);
     }
   }
   const generateSudokuGrid = () => {
@@ -145,7 +147,7 @@ export default function Nav(props) {
         </button>
         <Failure message='Try again!' />
       </form>
-      <Rank value='+22' rank='359' show={true} />
+      <Rank value='+22' rank='359' show={showRank} />
     </section>
   );
 }
