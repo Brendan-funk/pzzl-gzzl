@@ -113,7 +113,7 @@ export default function Nav(props) {
 
   return (
     <section>
-      <div class='spacer'></div>
+      <div className='spacer'></div>
       <form id='sudokuForm'>
         <Timer title='Sudoku' seconds={seconds} setSeconds={(x) => setSeconds(x)} />
         <table cellSpacing={0} cellPadding={0}>
