@@ -152,12 +152,13 @@ export default function Menu(props) {
   // rotation function for the animation loop
   const menuRotate = (rotate, direction) => {
     if (rotate && direction === 'right') {
-      const startRot = 0;
       if (spinnerGroup.rotation.y < Math.PI) {
         spinnerGroup.rotation.y += (Math.PI / 24);
       }
     } else if (rotate && direction === 'left') {
-      spinnerGroup.rotation.y -= (Math.PI / 24);
+      if (spinnerGroup.rotation.y > -Math.PI) {
+        spinnerGroup.rotation.y -= (Math.PI / 24);
+      }
     }
   };
 
