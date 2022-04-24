@@ -47,7 +47,7 @@ export default function Menu(props) {
     // --- helpers for testing ---
     //----------------------------
     scene.add(new THREE.AxesHelper(500));
-    const controls = new OrbitControls( camera, renderer.domElement );
+    // const controls = new OrbitControls( camera, renderer.domElement );
 
     // ----------------------------
     // --- custom model loading ---
@@ -116,7 +116,7 @@ export default function Menu(props) {
       const jetBrainsFont = fontLoader.parse(json);
 
       // Use parsed font as normal text geometry
-      const textGeometry = new TextGeometry('SUDOKU', {
+      const textGeometry = new TextGeometry('sudoku', {
         height: 1,
         size: 2,
         font: jetBrainsFont,
@@ -131,12 +131,32 @@ export default function Menu(props) {
       spinnerGroup.add(textMesh);
     });
 
-    // add group to scene
+    ttfLoader.load('fonts3D/jet_brains_mono_regular.ttf', (json) => {
+      // parse the custom font
+      const jetBrainsFont = fontLoader.parse(json);
+
+      // Use parsed font as normal text geometry
+      const textGeometry = new TextGeometry('word search', {
+        height: 1,
+        size: 1.3,
+        font: jetBrainsFont,
+      });
+      const textMaterial = new THREE.MeshLambertMaterial();
+      const textMesh = new THREE.Mesh(textGeometry, textMaterial);
+      textMesh.position.x = 5.8;
+      textMesh.position.y = 24.2;
+      textMesh.position.z = -8;
+      textMesh.rotation.y = Math.PI;
+
+      // add to spinner group
+      spinnerGroup.add(textMesh);
+    });
+
+    // add spinner group to scene
     scene.add(spinnerGroup);
   };
 
   window.addEventListener('keydown', (e) => {
-    const initialRot = spinnerGroup.rotation.y;
     canInput = true;
     if (canInput) {
       if (e.key === "ArrowRight") {
@@ -153,11 +173,11 @@ export default function Menu(props) {
   const menuRotate = (rotate, direction) => {
     if (rotate && direction === 'right') {
       if (spinnerGroup.rotation.y < Math.PI) {
-        spinnerGroup.rotation.y += (Math.PI / 24);
+        spinnerGroup.rotation.y += (Math.PI / 12);
       }
     } else if (rotate && direction === 'left') {
       if (spinnerGroup.rotation.y > -Math.PI) {
-        spinnerGroup.rotation.y -= (Math.PI / 24);
+        spinnerGroup.rotation.y -= (Math.PI / 12);
       }
     }
   };
