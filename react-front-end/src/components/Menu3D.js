@@ -11,7 +11,8 @@ import { TextGeometry } from 'three/examples/jsm/geometries/TextGeometry';
 
 export default function Menu(props) {
 
-  let scene, camera, renderer, cube, hemiLight, spinner, spinnerGroup, shouldRotate, rotationDir, canInput;
+  let scene, camera, renderer, hemiLight, spinner, spinnerGroup, shouldRotate, rotationDir;
+  let canInput = true;
 
   const init = () => {
 
@@ -157,14 +158,15 @@ export default function Menu(props) {
   };
 
   window.addEventListener('keydown', (e) => {
-    canInput = true;
     if (canInput) {
       if (e.key === "ArrowRight") {
         shouldRotate = true;
         rotationDir = 'right';
+        canInput = false;
       } else if (e.key === "ArrowLeft") {
         shouldRotate = true;
         rotationDir = 'left';
+        canInput = false;
       }
     }
   });
@@ -174,10 +176,16 @@ export default function Menu(props) {
     if (rotate && direction === 'right') {
       if (spinnerGroup.rotation.y < Math.PI) {
         spinnerGroup.rotation.y += (Math.PI / 12);
+      } else {
+        canInput = true;
+        // console.log(spinnerGroup.rotation.y);
       }
     } else if (rotate && direction === 'left') {
-      if (spinnerGroup.rotation.y > -Math.PI) {
+      if (spinnerGroup.rotation.y > 0.01) {
         spinnerGroup.rotation.y -= (Math.PI / 12);
+      } else {
+        canInput = true;
+        // console.log(spinnerGroup.rotation.y);
       }
     }
   };
