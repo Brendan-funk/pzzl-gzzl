@@ -9,7 +9,9 @@ import axios from 'axios';
 export default function Nav(props) {
 
   const [seconds, setSeconds] = useState(0);
+  const [attempts, setAttempts] = useState(0);
   const [showRank, setShowRank] = useState(false);
+  const [showFail, setShowFail] = useState(false);
 
   const sudoku = props.sudoku;
   const puzzleArr = sudoku.puzzle;
@@ -24,7 +26,8 @@ export default function Nav(props) {
   });
   const onSubmit = function(event) {
     event.preventDefault();
-    
+    setShowFail(false);
+    setAttempts(attempts + 1);
     let answers = {}
     for (let i = 1; i < 82; i++) {
       const string = 'box-'+i;
@@ -35,12 +38,14 @@ export default function Nav(props) {
     }
     const isRight = props.checkAnswer(puzzleArr, answers, sudoku.solution);
     if (isRight) {
-      let deltaRating = rating(300, 2);
+      let deltaRating = rating(seconds, attempts);
       axios.post(`http://localhost:8001/rating`, {
         id: 1,
-        ratingChange: 3
+        ratingChange: deltaRating
       });
       setShowRank(true);
+    } else {
+      setShowFail(true);
     }
   }
   const generateSudokuGrid = () => {
@@ -145,7 +150,7 @@ export default function Nav(props) {
         <button type='submit' onClick={(e) => onSubmit(e)}>
           Submit
         </button>
-        <Failure message='Try again!' />
+        { showFail ? <Failure message='Try again!' /> : <></>}
       </form>
       <Rank value='+22' rank='359' show={showRank} />
     </section>
