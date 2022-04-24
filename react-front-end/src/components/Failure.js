@@ -5,7 +5,7 @@ import Popup from "./Popup";
 export default function Failure(props) {
 
   return (
-    <div class='failure-main'>
+    <div class='failure-main' onClick={props.hideFailPopup}>
       <Popup failure={true} message={props.message} />
     </div>
   );

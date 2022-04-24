@@ -150,7 +150,7 @@ export default function Nav(props) {
         <button type='submit' onClick={(e) => onSubmit(e)}>
           Submit
         </button>
-        { showFail ? <Failure message='Try again!' /> : <></>}
+        { showFail ? <Failure message='Try again!' hideFailPopup={() => setShowFail(false)} /> : <></>}
       </form>
       <Rank value='+22' rank='359' show={showRank} />
     </section>
