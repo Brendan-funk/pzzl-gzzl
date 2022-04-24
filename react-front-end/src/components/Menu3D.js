@@ -168,7 +168,7 @@ export default function Menu(props) {
         rotationDir = 'left';
         canInput = false;
       } else if (e.key === "Enter") {
-        console.log('enter pressed');
+        props.transition("SUDOKU");
       }
     }
   });

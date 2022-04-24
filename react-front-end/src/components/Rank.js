@@ -18,7 +18,7 @@ export default function Rank(props) {
         </div>
         <div class='wrapper'>
           <h2>{props.value}</h2>
-          <button class="button-54">continue</button>
+          <button class="button-54" onClick={() => props.transition("HOME")}>continue</button>
         </div>
       </div>
     </div>

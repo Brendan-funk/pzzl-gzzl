@@ -152,7 +152,7 @@ export default function Nav(props) {
         </button>
         { showFail ? <Failure message='Try again!' hideFailPopup={() => setShowFail(false)} /> : <></>}
       </form>
-      <Rank value='+22' rank='359' show={showRank} />
+      <Rank value='+22' rank='359' show={showRank} transition={props.transition}/>
     </section>
   );
 }
