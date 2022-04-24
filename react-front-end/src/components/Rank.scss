@@ -5,8 +5,9 @@ $secondary-color: white;
 $blur-color: rgba(0, 0, 0, 0.6);
 
 .blur {
+  margin-top: 125px;
   position: absolute;
-  height: 100vh;
+  height: 100%;
   width: 100%;
   background-color: $blur-color;
   display: none;

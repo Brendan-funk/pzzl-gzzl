@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import './Sudoku.scss'
 import { generateSudoku } from "../helpers/generateSudoku";
+import Rank from "./Rank";
 import Timer from "./Timer";
 import Failure from "./Failure";
 import rating from "../helpers/ratingIncrease";
@@ -144,6 +145,7 @@ export default function Nav(props) {
         </button>
         <Failure message='Try again!' />
       </form>
+      <Rank value='+22' rank='359' show={true} />
     </section>
   );
 }
