@@ -1,5 +1,6 @@
 import React from "react";
 import './Menu3D.scss'
+import Help from "./Help";
 
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
@@ -18,7 +19,7 @@ export default function Menu(props) {
 
     // create scene and set background
     scene = new THREE.Scene();
-    scene.background = new THREE.Color( '#2e2e2e' );
+    scene.background = new THREE.Color( '#C2C2C2' );
 
     // add camera
     camera = new THREE.PerspectiveCamera(
@@ -162,7 +163,7 @@ export default function Menu(props) {
       const jetBrainsFont = fontLoader.parse(json);
 
       // Use parsed font as normal text geometry
-      const textGeometry = new TextGeometry('•  •', {
+      const textGeometry = new TextGeometry('0  0', {
         height: 0.2,
         size: 2,
         font: jetBrainsFont,
@@ -255,6 +256,7 @@ export default function Menu(props) {
   return (
     <>
       <div className='menu-3d'></div>
+      <Help />
       {/* <div id='menu-click'>
         <div></div>
       </div> */}
