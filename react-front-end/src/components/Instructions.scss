@@ -48,6 +48,7 @@ $x-icon-margin: 30px;
     animation-duration: 0.4s;
     animation-iteration-count: 1;
     font-size: 0.7vw;
+    cursor: pointer;
   
     h1 {
       margin: 0;
@@ -68,10 +69,4 @@ $x-icon-margin: 30px;
       font-size: 1vw;
     }
   }
-}
-
-.popup--failure {
-  background: rgba(243, 112, 112, 0.554);
-  border: 3px solid rgb(243, 112, 112);
-  color: rgb(3, 30, 41);
 }
