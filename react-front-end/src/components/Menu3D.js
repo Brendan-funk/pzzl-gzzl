@@ -111,7 +111,7 @@ export default function Menu(props) {
       const textMaterial = new THREE.MeshNormalMaterial();
       const textMesh = new THREE.Mesh(textGeometry, textMaterial);
       textMesh.position.x = -43;
-      textMesh.position.y = 25;
+      textMesh.position.y = 21;
       textMesh.position.z = -110;
       // add mesh to scene
       scene.add( textMesh );
@@ -167,7 +167,7 @@ export default function Menu(props) {
       const jetBrainsFont = fontLoader.parse(json);
 
       // Use parsed font as normal text geometry
-      const textGeometry = new TextGeometry('0  0', {
+      const textGeometry = new TextGeometry('o  o', {
         height: 0.2,
         size: 2,
         font: jetBrainsFont,
