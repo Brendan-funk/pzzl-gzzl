@@ -16,6 +16,7 @@ export default function Menu(props) {
 
   // state for help bubble popup
   const [showHelp, setShowHelp] = useState(false);
+  const [showInstructions, setShowInstructions] = useState(true);
 
   let scene, camera, renderer, hemiLight, spinner, spinnerGroup, shouldRotate, rotationDir, fov;
   let canInput = true;
@@ -338,7 +339,7 @@ export default function Menu(props) {
   return (
     <>
       <div className='menu-3d'></div>
-      <Instructions />
+      { showInstructions ? <Instructions message='Try again!' hideInstructions={() => setShowInstructions(false)} /> : <></>}
       <Help showHelp={showHelp} hideHelpPopup={() => setShowHelp(false)} />
       <Footer showHelpPopup={() => setShowHelp(true)} />
     </>

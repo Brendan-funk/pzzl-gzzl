@@ -14,7 +14,7 @@ export default function Popup(props) {
 
   return (
     <div className="instructions-wrap">
-      <div className={instructionsClass}>
+      <div className={instructionsClass} onClick={props.hideInstructions}>
         <FontAwesomeIcon icon={faXmark} id='x-left'/>
           <h1>
             Select a puzzle with the arrow keys and hit enter to play!
