@@ -6,8 +6,9 @@ import Instructions from "./Instructions";
 
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
+
+// eslint-disable-next-line no-unused-vars
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
-import { ColladaLoader } from 'three/examples/jsm/loaders/ColladaLoader';
 
 import { TTFLoader } from 'three/examples/jsm/loaders/TTFLoader';
 import { FontLoader } from 'three/examples/jsm/loaders/FontLoader';
@@ -74,7 +75,7 @@ export default function Menu(props) {
 
     // middle spinner
     const geometry = new THREE.CylinderGeometry( 8.5, 8.5, 4, 64 );
-    const material = new THREE.MeshNormalMaterial( {color: 0x0095DD} );
+    const material = new THREE.MeshNormalMaterial();
     spinner = new THREE.Mesh( geometry, material );
     spinner.position.set(0, 24.8, 0);
     spinner.rotation.y += (Math.PI / 6); // set initial rotation so there is a flat side facing forward

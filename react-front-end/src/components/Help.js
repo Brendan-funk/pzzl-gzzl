@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import './Help.scss';
 
 // get our fontawesome imports

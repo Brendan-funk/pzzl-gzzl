@@ -17,7 +17,7 @@ class App extends Component {
 
   getSudoku = () => {
     const sudoku = generateSudoku();
-    console.log('---Sudoku generated---')
+    // console.log('---Sudoku generated---');
     return sudoku;
   }
 
