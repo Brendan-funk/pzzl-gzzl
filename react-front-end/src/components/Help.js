@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import './Help.scss';
 
 // get our fontawesome imports
@@ -8,19 +8,30 @@ import { faTrophy } from "@fortawesome/free-solid-svg-icons";
 
 
 export default function Help(props) {
- 
-  return (
-    <div id="help">
-      <div id='help-bubble'>
-        <div class='text-wrap'>
-          <h1>Need Help? <FontAwesomeIcon id='x-icon' icon={faXmark} /></h1>
-          <p>
-            My name is Puzz, and i'm here to help! <br></br><br></br>
-            Use the left and right arrow keys ( ← → ) to swap between different puzzles, and hit 'Enter' to select a puzzle.<br></br><br></br>
-            Clicking on the trophy ( <FontAwesomeIcon icon={faTrophy} /> ) in the top-right will open the player leaderboard. These are where the highest ranking users are displayed.
-          </p>
+  const [showHelp, setShowHelp] = useState(true);
+
+  const renderOutput = (display) => {
+    if(!showHelp) return null;
+    return (
+      <div id="help">
+        <div id='help-bubble'>
+          <div class='text-wrap'>
+            <h1>Need Help? <FontAwesomeIcon id='x-icon' icon={faXmark} onClick={() => {setShowHelp(false)}} /></h1>
+            <p>
+              My name is Puzz, and i'm here to help! <br></br><br></br>
+              Use the left and right arrow keys ( ← → ) to swap between different puzzles, and hit 'Enter' to select a puzzle.<br></br><br></br>
+              Clicking on the trophy ( <FontAwesomeIcon icon={faTrophy} /> ) in the top-right will open the player leaderboard. These are where the highest ranking users are displayed.
+            </p>
+          </div>
         </div>
       </div>
-    </div>
+    )
+  };
+ 
+  return (
+    <>
+      {renderOutput(showHelp)}
+    </>
+    
   );
 }

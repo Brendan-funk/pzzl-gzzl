@@ -257,9 +257,6 @@ export default function Menu(props) {
     <>
       <div className='menu-3d'></div>
       <Help />
-      {/* <div id='menu-click'>
-        <div></div>
-      </div> */}
     </>
   );
 }
