@@ -16,9 +16,9 @@ export default function Nav(props) {
           <li><a href="#/" id='nav-logo'><FontAwesomeIcon icon={faPuzzlePiece} /></a></li>
           <li><a href="#/">Pzzl Gzzl</a></li>
           <li><h3>Ernő Rubik</h3></li>
-          <span id='trophy-icon'>
+          <li id='trophy-icon'>
             <SideDrawer/>
-          </span>
+          </li>
         </ul>
       </nav>
     </div>

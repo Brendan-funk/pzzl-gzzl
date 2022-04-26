@@ -1,26 +1,37 @@
 $nav-color: #6282b3;
 
-nav {
-  border: 1px solid $nav-color;
-  background-color: $nav-color;
-}
-
 #nav-container {
   width: 100%;
   position: fixed;
   z-index: 10;
 }
 
+nav {
+  border: 1px solid $nav-color;
+  background-color: $nav-color;
+  width: 100%;
+}
+
 nav ul {
-  border: 1px solid red;
+  width: 100%;
+  padding: 0;
+  margin: 0;
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
 }
 
 li {
   list-style: none;
-  margin-right: 10px;
+}
+
+li:first-of-type {
+  // margin-right: 10px;
+  padding: 0px 35px;
+}
+
+li:last-of-type {
+  padding: 0px 35px;
 }
 
 li a {
@@ -29,20 +40,18 @@ li a {
   font-size: 20px;
 }
 
-li:nth-of-type(2) a {
-  // border: 1px solid red;
-  margin-left: 15px;
+li:nth-of-type(3) {
+  margin-left: auto;
+}
+
+#nav-logo {
+  font-size: 1.5em;
 }
 
 #trophy-icon {
-  margin-left: auto;
-  margin-right: 40px;
+  font-size: 1.3em;
 }
 
 nav h3 {
   display: inline-block;
-}
-
-#nav-logo {
-  font-size: 25px;
 }
