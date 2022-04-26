@@ -45,7 +45,7 @@ export default function Menu(props) {
     document.body.appendChild(renderer.domElement);
 
 
-    const light = new THREE.DirectionalLight( 0xFFFFFF, 1 );
+    const light = new THREE.DirectionalLight( 0xFFFFFF, 0.5 );
     light.position.set(0, 25, 30);
     scene.add( light );
 
@@ -64,7 +64,7 @@ export default function Menu(props) {
 
     // head model
     var loader = new GLTFLoader();
-    loader.load('puzz_head_v2.gltf', function(gltf) {
+    loader.load('models/puzz_head_v2.gltf', function(gltf) {
       var object = gltf.scene;
       object.position.set(0.5, 12, -5.5);
       object.scale.set(0.5, 0.5, 0.5);
@@ -73,11 +73,11 @@ export default function Menu(props) {
     });
 
     // base model
-    loader.load('puzz_base_v2.gltf', function(gltf) {
+    loader.load('models/puzz_bottom_v2.gltf', function(gltf) {
       var object = gltf.scene;
-      object.position.set(0.2, 15, -5.5);
-      object.scale.set(0.5, 0.5, 0.5);
-      object.rotation.x -= 0.07; // adjust rotation for imported model (blender issue)
+      object.position.set(-0.2, 16.5, 0);
+      object.scale.set(0.15, 0.10, 0.15);
+      // object.rotation.x -= 0.07; // adjust rotation for imported model (blender issue)
       scene.add(object);
     });
 
@@ -103,15 +103,15 @@ export default function Menu(props) {
       const jetBrainsFont = fontLoader.parse(json);
 
       // Use parsed font as normal text geometry
-      const textGeometry = new TextGeometry('Pzzl     Gzzl', {
+      const textGeometry = new TextGeometry('Pzzl    Gzzl', {
         height: 100,
-        size: 8,
+        size: 10,
         font: jetBrainsFont,
       });
       const textMaterial = new THREE.MeshNormalMaterial();
       const textMesh = new THREE.Mesh(textGeometry, textMaterial);
-      textMesh.position.x = -43;
-      textMesh.position.y = 21;
+      textMesh.position.x = -49;
+      textMesh.position.y = 19;
       textMesh.position.z = -110;
       // add mesh to scene
       scene.add( textMesh );
@@ -223,6 +223,30 @@ export default function Menu(props) {
       // add to spinner group
       scene.add(textMesh);
     });
+
+    // generate backgroud puzzle pieces
+
+    for (let i = 0; i < 500; i++) {
+      // eslint-disable-next-line no-loop-func
+      loader.load('models/puzzle_piece.gltf', (gltf) => {
+          var object = gltf.scene;
+          object.position.set((1 * generateRandom(-100, 100)), (1 * generateRandom(-100, 100)), (1 * generateRandom(-20, -100)));
+          object.scale.set((1 * generateRandom(0.05, 0.5)), (1 * generateRandom(0.05, 0.5)), (1 * generateRandom(0.05, 0.5)));
+          object.rotation.set(generateRandom(0, (2 * Math.PI)), generateRandom(0, (2 * Math.PI)), generateRandom(0, (2 * Math.PI)));
+          scene.add(object);
+      });
+    }
+
+  };
+
+  const generateRandom = (min = -50, max = 50) => {
+    let diff = max - min;
+    let rand = Math.random();
+
+    rand = Math.floor(rand * diff);
+    rand = rand + min;
+
+    return rand;
   };
 
   window.addEventListener('keydown', (e) => {
