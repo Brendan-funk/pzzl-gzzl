@@ -188,6 +188,27 @@ export default function Menu(props) {
       const jetBrainsFont = fontLoader.parse(json);
 
       // Use parsed font as normal text geometry
+      const textGeometry = new TextGeometry('-  -', {
+        height: 0.2,
+        size: 2,
+        font: jetBrainsFont,
+      });
+      const textMaterial = new THREE.MeshLambertMaterial({color: 0x1E1C1B});
+      const textMesh = new THREE.Mesh(textGeometry, textMaterial);
+      textMesh.position.x = -2.9;
+      textMesh.position.y = 28;
+      textMesh.position.z = 10;
+
+      // add to spinner group
+      scene.add(textMesh);
+    });
+
+    // load text for pzzl-bot
+    ttfLoader.load('fonts3D/jet_brains_mono_regular.ttf', (json) => {
+      // parse the custom font
+      const jetBrainsFont = fontLoader.parse(json);
+
+      // Use parsed font as normal text geometry
       const textGeometry = new TextGeometry('‿', {
         height: 0.5,
         size: 2,
@@ -216,9 +237,15 @@ export default function Menu(props) {
         canInput = false;
       } else if (e.key === "Enter") {
         props.transition("SUDOKU");
+      } else if (e.key === "ArrowUp") {
+        
       }
     }
   });
+
+  const botBlink = () => {
+
+  }
 
   // rotation function for the animation loop
   const menuRotate = (rotate, direction) => {
