@@ -99,7 +99,7 @@ export default function Menu(props) {
 
       // Use parsed font as normal text geometry
       const textGeometry = new TextGeometry('Pzzl     Gzzl', {
-        height: 2,
+        height: 100,
         size: 8,
         font: jetBrainsFont,
       });
@@ -107,7 +107,7 @@ export default function Menu(props) {
       const textMesh = new THREE.Mesh(textGeometry, textMaterial);
       textMesh.position.x = -43;
       textMesh.position.y = 25;
-      textMesh.position.z = -10;
+      textMesh.position.z = -110;
       // add mesh to scene
       scene.add( textMesh );
     });
@@ -122,7 +122,7 @@ export default function Menu(props) {
         size: 2,
         font: jetBrainsFont,
       });
-      const textMaterial = new THREE.MeshLambertMaterial();
+      const textMaterial = new THREE.MeshLambertMaterial({color: 0xD9DCE2});
       const textMesh = new THREE.Mesh(textGeometry, textMaterial);
       textMesh.position.x = -5;
       textMesh.position.y = 23.8;
@@ -155,6 +155,48 @@ export default function Menu(props) {
 
     // add spinner group to scene
     scene.add(spinnerGroup);
+
+    // load text for pzzl-bot
+    ttfLoader.load('fonts3D/jet_brains_mono_regular.ttf', (json) => {
+      // parse the custom font
+      const jetBrainsFont = fontLoader.parse(json);
+
+      // Use parsed font as normal text geometry
+      const textGeometry = new TextGeometry('• •', {
+        height: 0.5,
+        size: 3,
+        font: jetBrainsFont,
+      });
+      const textMaterial = new THREE.MeshLambertMaterial({color: 0x1E1C1B});
+      const textMesh = new THREE.Mesh(textGeometry, textMaterial);
+      textMesh.position.x = -3.3;
+      textMesh.position.y = 27.6;
+      textMesh.position.z = 10;
+
+      // add to spinner group
+      scene.add(textMesh);
+    });
+
+    // load text for pzzl-bot
+    ttfLoader.load('fonts3D/jet_brains_mono_regular.ttf', (json) => {
+      // parse the custom font
+      const jetBrainsFont = fontLoader.parse(json);
+
+      // Use parsed font as normal text geometry
+      const textGeometry = new TextGeometry('‿', {
+        height: 0.5,
+        size: 2,
+        font: jetBrainsFont,
+      });
+      const textMaterial = new THREE.MeshLambertMaterial({color: 0x1E1C1B});
+      const textMesh = new THREE.Mesh(textGeometry, textMaterial);
+      textMesh.position.x = -0.4;
+      textMesh.position.y = 28.6;
+      textMesh.position.z = 10;
+
+      // add to spinner group
+      scene.add(textMesh);
+    });
   };
 
   window.addEventListener('keydown', (e) => {
