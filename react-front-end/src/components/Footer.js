@@ -9,7 +9,7 @@ export default function Nav(props) {
 
   return (
     <footer>
-      <span id='help-icon'>
+      <span id='help-icon' onClick={props.showHelpPopup}>
         <a href='#/'>
           <FontAwesomeIcon icon={faQuestion} />
           <p>help</p>

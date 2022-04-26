@@ -8,15 +8,14 @@ import { faTrophy } from "@fortawesome/free-solid-svg-icons";
 
 
 export default function Help(props) {
-  const [showHelp, setShowHelp] = useState(true);
 
   const renderOutput = (display) => {
-    if(!showHelp) return null;
+    if(!display) return null;
     return (
       <div id="help">
         <div id='help-bubble'>
           <div class='text-wrap'>
-            <h1>Need Help? <FontAwesomeIcon id='x-icon' icon={faXmark} onClick={() => {setShowHelp(false)}} /></h1>
+            <h1>Need Help? <FontAwesomeIcon id='x-icon' icon={faXmark} onClick={props.hideHelpPopup} /></h1>
             <p>
               My name is Puzz, and i'm here to help! <br></br><br></br>
               Use the left and right arrow keys ( ← → ) to swap between different puzzles, and hit 'Enter' to select a puzzle.<br></br><br></br>
@@ -30,7 +29,7 @@ export default function Help(props) {
  
   return (
     <>
-      {renderOutput(showHelp)}
+      {renderOutput(props.showHelp)}
     </>
     
   );

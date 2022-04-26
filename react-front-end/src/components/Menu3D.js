@@ -1,6 +1,7 @@
-import React from "react";
+import React, {useState} from "react";
 import './Menu3D.scss'
 import Help from "./Help";
+import Footer from './Footer';
 
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
@@ -11,6 +12,9 @@ import { FontLoader } from 'three/examples/jsm/loaders/FontLoader';
 import { TextGeometry } from 'three/examples/jsm/geometries/TextGeometry';
 
 export default function Menu(props) {
+
+  // state for help bubble popup
+  const [showHelp, setShowHelp] = useState(false);
 
   let scene, camera, renderer, hemiLight, spinner, spinnerGroup, shouldRotate, rotationDir;
   let canInput = true;
@@ -256,7 +260,8 @@ export default function Menu(props) {
   return (
     <>
       <div className='menu-3d'></div>
-      <Help />
+      <Help showHelp={showHelp} hideHelpPopup={() => setShowHelp(false)} />
+      <Footer showHelpPopup={() => setShowHelp(true)} />
     </>
   );
 }
