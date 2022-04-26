@@ -16,21 +16,22 @@ export default function Menu(props) {
   // state for help bubble popup
   const [showHelp, setShowHelp] = useState(false);
 
-  let scene, camera, renderer, hemiLight, spinner, spinnerGroup, shouldRotate, rotationDir;
+  let scene, camera, renderer, hemiLight, spinner, spinnerGroup, shouldRotate, rotationDir, fov;
   let canInput = true;
 
   const init = () => {
 
     // create scene and set background
     scene = new THREE.Scene();
-    scene.background = new THREE.Color( '#C2C2C2' );
+    scene.background = new THREE.Color( '#A8BBCF' );
 
     // add camera
+    fov = 90;
     camera = new THREE.PerspectiveCamera(
-      75,
+      fov,
       window.innerWidth / window.innerHeight,
       0.1,
-      100
+      1000
     );
     camera.position.set(0, 25, 35);
 
@@ -103,16 +104,16 @@ export default function Menu(props) {
       const jetBrainsFont = fontLoader.parse(json);
 
       // Use parsed font as normal text geometry
-      const textGeometry = new TextGeometry('Pzzl    Gzzl', {
-        height: 100,
+      const textGeometry = new TextGeometry('Pzzl   Gzzl', {
+        height: 150,
         size: 10,
         font: jetBrainsFont,
       });
       const textMaterial = new THREE.MeshNormalMaterial();
       const textMesh = new THREE.Mesh(textGeometry, textMaterial);
-      textMesh.position.x = -49;
+      textMesh.position.x = -46;
       textMesh.position.y = 19;
-      textMesh.position.z = -110;
+      textMesh.position.z = -150;
       // add mesh to scene
       scene.add( textMesh );
     });
@@ -230,7 +231,7 @@ export default function Menu(props) {
       // eslint-disable-next-line no-loop-func
       loader.load('models/puzzle_piece.gltf', (gltf) => {
           var object = gltf.scene;
-          object.position.set((1 * generateRandom(-100, 100)), (1 * generateRandom(-100, 100)), (1 * generateRandom(-20, -100)));
+          object.position.set((1 * generateRandom(-120, 120)), (1 * generateRandom(-100, 100)), (1 * generateRandom(-10, -100)));
           object.scale.set((1 * generateRandom(0.05, 0.5)), (1 * generateRandom(0.05, 0.5)), (1 * generateRandom(0.05, 0.5)));
           object.rotation.set(generateRandom(0, (2 * Math.PI)), generateRandom(0, (2 * Math.PI)), generateRandom(0, (2 * Math.PI)));
           scene.add(object);
@@ -239,6 +240,7 @@ export default function Menu(props) {
 
   };
 
+  // helper that returns random values in a set range
   const generateRandom = (min = -50, max = 50) => {
     let diff = max - min;
     let rand = Math.random();
@@ -267,9 +269,23 @@ export default function Menu(props) {
     }
   });
 
-  const botBlink = () => {
-
+  // Camera rotate effect on mouse move
+  window.addEventListener('mousemove', onMouseMove, false);
+  function onMouseMove(event) {
+    const moveFactor = 10000;
+    scene.rotation.y = ((event.clientX - window.innerWidth / 2) / moveFactor);
+    scene.rotation.x = ((event.clientY - window.innerHeight / 2) / (moveFactor * 2));
   }
+
+  // const centerCam = () => {
+  //   // console.log('SCENE POS', scene.position.x);
+  //   const pos = scene.position.x;
+  //   if (pos > 0.1) {
+  //     scene.position.x -= 0.1;
+  //   } else if (pos < -0.1) {
+  //     scene.position.x += 0.1;
+  //   }
+  // }
 
   // rotation function for the animation loop
   const menuRotate = (rotate, direction) => {
@@ -290,10 +306,20 @@ export default function Menu(props) {
     }
   };
 
+  // on load fov
+  const changeFov = (min = 75) => {
+    if (camera.fov > min) {
+      camera.fov = (camera.fov - 1);
+    }
+  };
+
   // animation loop, called once per frame
   function animate() {
     requestAnimationFrame(animate);
     menuRotate(shouldRotate, rotationDir);
+    // centerCam();
+    changeFov();
+    camera.updateProjectionMatrix();
     renderer.render(scene, camera);
   }
 
