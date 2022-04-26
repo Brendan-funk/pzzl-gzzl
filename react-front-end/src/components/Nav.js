@@ -1,5 +1,5 @@
 import React from "react";
-import './Nav.scss'
+import './Nav.scss';
 import SideDrawer from "./SideDrawer.js";
 
 // get our fontawesome imports

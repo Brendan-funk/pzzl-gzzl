@@ -1,4 +1,5 @@
 import * as React from 'react';
+import './SideDrawer.scss';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import List from '@mui/material/List';
@@ -51,7 +52,7 @@ export default function SideDrawer() {
   
   return (
     <div>
-      <FontAwesomeIcon icon={faTrophy} onClick={toggleDrawer('right', true)} />
+      <FontAwesomeIcon icon={faTrophy} onClick={toggleDrawer('right', true)} className='side-drawer-trophy'/>
       {['right'].map((anchor) => (
         <React.Fragment key={anchor}>
           <Drawer
