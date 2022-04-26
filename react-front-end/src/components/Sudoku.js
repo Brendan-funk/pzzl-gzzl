@@ -9,10 +9,9 @@ import axios from 'axios';
 export default function Nav(props) {
 
   const [seconds, setSeconds] = useState(0);
-  const [attempts, setAttempts] = useState(0);
+  let attempts = 0;
   const [showRank, setShowRank] = useState(false);
   const [showFail, setShowFail] = useState(false);
-
   const sudoku = props.sudoku;
   const puzzleArr = sudoku.puzzle;
   const formattedPuzzle = puzzleArr.map((elm, i) => {
@@ -24,10 +23,11 @@ export default function Nav(props) {
 
     return <td>{output}</td>;
   });
+  
   const onSubmit = function(event) {
     event.preventDefault();
     setShowFail(false);
-    setAttempts(attempts + 1);
+    attempts++;
     let answers = {}
     for (let i = 1; i < 82; i++) {
       const string = 'box-'+i;
@@ -38,10 +38,12 @@ export default function Nav(props) {
     }
     const isRight = props.checkAnswer(puzzleArr, answers, sudoku.solution);
     if (isRight) {
-      let deltaRating = rating(seconds, attempts);
+      console.log(attempts)
+      const deltaRating = rating(seconds, attempts);
+      console.log(deltaRating);
       axios.post(`http://localhost:8001/rating`, {
         id: 1,
-        ratingChange: deltaRating
+        ratingChange: deltaRating 
       });
       setShowRank(true);
     } else {
@@ -152,7 +154,7 @@ export default function Nav(props) {
         </button>
         { showFail ? <Failure message='Try again!' hideFailPopup={() => setShowFail(false)} /> : <></>}
       </form>
-      <Rank value='+22' rank='359' show={showRank} transition={props.transition}/>
+      <Rank value='+22'  show={showRank} transition={props.transition}/>
     </section>
   );
 }

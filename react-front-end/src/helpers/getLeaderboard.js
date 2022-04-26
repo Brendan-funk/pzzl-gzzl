@@ -9,12 +9,10 @@ export default function getLeaderboard() {
   useEffect(() => {
   Promise.all([axios.get("http://localhost:8001/leaderboard")])
   .then(leaders => {
-    
-    
-  
-    
+    let count = 1;
     for(const leader of leaders[0].data){
-      tempNames.push(leader.name);
+      tempNames.push(`${count}. ${leader.name} ${leader.rating}`);
+      count++;
     }
     setNames(tempNames);
     
