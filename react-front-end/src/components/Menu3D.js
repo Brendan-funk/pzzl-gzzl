@@ -19,7 +19,7 @@ export default function Menu(props) {
   const [showHelp, setShowHelp] = useState(false);
   const [showInstructions, setShowInstructions] = useState(true);
 
-  let scene, camera, renderer, hemiLight, spinner, spinnerGroup, shouldRotate, rotationDir, fov;
+  let scene, camera, renderer, hemiLight, spinner, spinnerGroup, eyesOpenGroup, eyesClosedGroup, shouldRotate, rotationDir, fov;
   let canInput = true;
 
   const init = () => {
@@ -44,12 +44,14 @@ export default function Menu(props) {
     //   loadingScreen.classList.add( 'fade-out' );
     // } );
 
-// ----------------------------
+    // ----------------------------
     // --- custom model loading ---
     // ----------------------------
     
-    // new group for spinner models
+    // group declarations
     spinnerGroup = new THREE.Group();
+    eyesOpenGroup = new THREE.Group();
+    eyesClosedGroup = new THREE.Group();
 
     // head model
     var loader = new GLTFLoader();
@@ -97,7 +99,8 @@ export default function Menu(props) {
         size: 10,
         font: jetBrainsFont,
       });
-      const textMaterial = new THREE.MeshNormalMaterial();
+      // const textMaterial = new THREE.MeshNormalMaterial();
+      const textMaterial = new THREE.MeshStandardMaterial({color: 0xF4A675, roughness: 0.5});
       const textMesh = new THREE.Mesh(textGeometry, textMaterial);
       textMesh.position.x = -46;
       textMesh.position.y = 19;
@@ -156,7 +159,7 @@ export default function Menu(props) {
       const jetBrainsFont = fontLoader.parse(json);
 
       // Use parsed font as normal text geometry
-      const textGeometry = new TextGeometry('o  o', {
+      const textGeometry = new TextGeometry('^  ^', {
         height: 0.2,
         size: 2,
         font: jetBrainsFont,
@@ -167,8 +170,10 @@ export default function Menu(props) {
       textMesh.position.y = 28;
       textMesh.position.z = 10;
 
+      eyesOpenGroup.add(textMesh);
+
       // add to spinner group
-      scene.add(textMesh);
+      scene.add(eyesOpenGroup);
     });
 
     // load text for pzzl-bot
@@ -185,11 +190,14 @@ export default function Menu(props) {
       const textMaterial = new THREE.MeshLambertMaterial({color: 0x1E1C1B});
       const textMesh = new THREE.Mesh(textGeometry, textMaterial);
       textMesh.position.x = -2.9;
-      textMesh.position.y = 28;
-      textMesh.position.z = 10;
+      textMesh.position.y = 28.5;
+      // note: z = 10 is visible
+      textMesh.position.z = 8;
+
+      eyesClosedGroup.add(textMesh);
 
       // add to spinner group
-      scene.add(textMesh);
+      scene.add(eyesClosedGroup);
     });
 
     // load text for pzzl-bot
@@ -245,188 +253,6 @@ export default function Menu(props) {
     // scene.add(new THREE.AxesHelper(500));
     // const controls = new OrbitControls( camera, renderer.domElement );
 
-    // // ----------------------------
-    // // --- custom model loading ---
-    // // ----------------------------
-    
-    // // new group for spinner models
-    // spinnerGroup = new THREE.Group();
-
-    // // head model
-    // var loader = new GLTFLoader();
-    // loader.load('models/puzz_head_v2.gltf', function(gltf) {
-    //   var object = gltf.scene;
-    //   object.position.set(0.5, 12, -5.5);
-    //   object.scale.set(0.5, 0.5, 0.5);
-    //   object.rotation.x -= 0.07; // adjust rotation for imported model (blender issue)
-    //   scene.add(object);
-    // });
-
-    // // base model
-    // loader.load('models/puzz_bottom_v2.gltf', function(gltf) {
-    //   var object = gltf.scene;
-    //   object.position.set(-0.2, 16.5, 0);
-    //   object.scale.set(0.15, 0.10, 0.15);
-    //   // object.rotation.x -= 0.07; // adjust rotation for imported model (blender issue)
-    //   scene.add(object);
-    // });
-
-    // // middle spinner
-    // const geometry = new THREE.CylinderGeometry( 8.5, 8.5, 4, 64 );
-    // const material = new THREE.MeshNormalMaterial( {color: 0x0095DD} );
-    // spinner = new THREE.Mesh( geometry, material );
-    // spinner.position.set(0, 24.8, 0);
-    // spinner.rotation.y += (Math.PI / 6); // set initial rotation so there is a flat side facing forward
-
-    // // add to spinner group
-    // spinnerGroup.add(spinner);
-
-    // //-----------------
-    // //--- Menu Text ---
-    // //-----------------
-
-    // // custom font loader
-    // const fontLoader = new FontLoader();
-    // const ttfLoader = new TTFLoader();
-    // ttfLoader.load('fonts3D/jet_brains_mono_regular.ttf', (json) => {
-    //   // parse the custom font
-    //   const jetBrainsFont = fontLoader.parse(json);
-
-    //   // Use parsed font as normal text geometry
-    //   const textGeometry = new TextGeometry('Pzzl   Gzzl', {
-    //     height: 150,
-    //     size: 10,
-    //     font: jetBrainsFont,
-    //   });
-    //   const textMaterial = new THREE.MeshNormalMaterial();
-    //   const textMesh = new THREE.Mesh(textGeometry, textMaterial);
-    //   textMesh.position.x = -46;
-    //   textMesh.position.y = 19;
-    //   textMesh.position.z = -150;
-    //   // add mesh to scene
-    //   scene.add( textMesh );
-    // });
-
-    // ttfLoader.load('fonts3D/jet_brains_mono_regular.ttf', (json) => {
-    //   // parse the custom font
-    //   const jetBrainsFont = fontLoader.parse(json);
-
-    //   // Use parsed font as normal text geometry
-    //   const textGeometry = new TextGeometry('sudoku', {
-    //     height: 1,
-    //     size: 2,
-    //     font: jetBrainsFont,
-    //   });
-    //   const textMaterial = new THREE.MeshLambertMaterial({color: 0xD9DCE2});
-    //   const textMesh = new THREE.Mesh(textGeometry, textMaterial);
-    //   textMesh.position.x = -5;
-    //   textMesh.position.y = 23.8;
-    //   textMesh.position.z = 8;
-
-    //   // add to spinner group
-    //   spinnerGroup.add(textMesh);
-    // });
-
-    // ttfLoader.load('fonts3D/jet_brains_mono_regular.ttf', (json) => {
-    //   // parse the custom font
-    //   const jetBrainsFont = fontLoader.parse(json);
-
-    //   // Use parsed font as normal text geometry
-    //   const textGeometry = new TextGeometry('word search', {
-    //     height: 1,
-    //     size: 1.3,
-    //     font: jetBrainsFont,
-    //   });
-    //   const textMaterial = new THREE.MeshLambertMaterial({color: 0xD9DCE2});
-    //   const textMesh = new THREE.Mesh(textGeometry, textMaterial);
-    //   textMesh.position.x = 5.8;
-    //   textMesh.position.y = 24.2;
-    //   textMesh.position.z = -8;
-    //   textMesh.rotation.y = Math.PI;
-
-    //   // add to spinner group
-    //   spinnerGroup.add(textMesh);
-    // });
-
-    // // add spinner group to scene
-    // scene.add(spinnerGroup);
-
-    // // load text for pzzl-bot
-    // ttfLoader.load('fonts3D/jet_brains_mono_regular.ttf', (json) => {
-    //   // parse the custom font
-    //   const jetBrainsFont = fontLoader.parse(json);
-
-    //   // Use parsed font as normal text geometry
-    //   const textGeometry = new TextGeometry('o  o', {
-    //     height: 0.2,
-    //     size: 2,
-    //     font: jetBrainsFont,
-    //   });
-    //   const textMaterial = new THREE.MeshLambertMaterial({color: 0x1E1C1B});
-    //   const textMesh = new THREE.Mesh(textGeometry, textMaterial);
-    //   textMesh.position.x = -2.9;
-    //   textMesh.position.y = 28;
-    //   textMesh.position.z = 10;
-
-    //   // add to spinner group
-    //   scene.add(textMesh);
-    // });
-
-    // // load text for pzzl-bot
-    // ttfLoader.load('fonts3D/jet_brains_mono_regular.ttf', (json) => {
-    //   // parse the custom font
-    //   const jetBrainsFont = fontLoader.parse(json);
-
-    //   // Use parsed font as normal text geometry
-    //   const textGeometry = new TextGeometry('-  -', {
-    //     height: 0.2,
-    //     size: 2,
-    //     font: jetBrainsFont,
-    //   });
-    //   const textMaterial = new THREE.MeshLambertMaterial({color: 0x1E1C1B});
-    //   const textMesh = new THREE.Mesh(textGeometry, textMaterial);
-    //   textMesh.position.x = -2.9;
-    //   textMesh.position.y = 28;
-    //   textMesh.position.z = 10;
-
-    //   // add to spinner group
-    //   scene.add(textMesh);
-    // });
-
-    // // load text for pzzl-bot
-    // ttfLoader.load('fonts3D/jet_brains_mono_regular.ttf', (json) => {
-    //   // parse the custom font
-    //   const jetBrainsFont = fontLoader.parse(json);
-
-    //   // Use parsed font as normal text geometry
-    //   const textGeometry = new TextGeometry('‿', {
-    //     height: 0.5,
-    //     size: 2,
-    //     font: jetBrainsFont,
-    //   });
-    //   const textMaterial = new THREE.MeshLambertMaterial({color: 0x1E1C1B});
-    //   const textMesh = new THREE.Mesh(textGeometry, textMaterial);
-    //   textMesh.position.x = -0.4;
-    //   textMesh.position.y = 28.8;
-    //   textMesh.position.z = 10;
-
-    //   // add to spinner group
-    //   scene.add(textMesh);
-    // });
-
-    // generate backgroud puzzle pieces
-
-    // for (let i = 0; i < 500; i++) {
-    //   // eslint-disable-next-line no-loop-func
-    //   loader.load('models/puzzle_piece.gltf', (gltf) => {
-    //       var object = gltf.scene;
-    //       object.position.set((1 * generateRandom(-120, 120)), (1 * generateRandom(-100, 100)), (1 * generateRandom(-10, -100)));
-    //       object.scale.set((1 * generateRandom(0.05, 0.5)), (1 * generateRandom(0.05, 0.5)), (1 * generateRandom(0.05, 0.5)));
-    //       object.rotation.set(generateRandom(0, (2 * Math.PI)), generateRandom(0, (2 * Math.PI)), generateRandom(0, (2 * Math.PI)));
-    //       scene.add(object);
-    //   });
-    // }
-
   };
 
   // helper that returns random values in a set range
@@ -476,6 +302,21 @@ export default function Menu(props) {
   //   }
   // }
 
+  const botBlink = (action) => {
+    const shouldBlink = generateRandom(0, 1000);
+    // console.log(shouldBlink);
+    if (shouldBlink > 995) {
+      setTimeout(() => {
+        eyesOpenGroup.position.z = -2;
+        eyesClosedGroup.position.z = 2;
+      }, 1000);
+      setTimeout(() => {
+        eyesOpenGroup.position.z = 0;
+        eyesClosedGroup.position.z = 0;
+      }, 1500);
+    }
+  };
+
   // rotation function for the animation loop
   const menuRotate = (rotate, direction) => {
     if (rotate && direction === 'right') {
@@ -506,6 +347,7 @@ export default function Menu(props) {
   function animate() {
     requestAnimationFrame(animate);
     menuRotate(shouldRotate, rotationDir);
+    botBlink();
     // centerCam();
     changeFov();
     camera.updateProjectionMatrix();
