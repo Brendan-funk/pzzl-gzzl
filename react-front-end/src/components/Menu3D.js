@@ -142,7 +142,7 @@ export default function Menu(props) {
         size: 1.3,
         font: jetBrainsFont,
       });
-      const textMaterial = new THREE.MeshLambertMaterial();
+      const textMaterial = new THREE.MeshLambertMaterial({color: 0xD9DCE2});
       const textMesh = new THREE.Mesh(textGeometry, textMaterial);
       textMesh.position.x = 5.8;
       textMesh.position.y = 24.2;
@@ -162,15 +162,15 @@ export default function Menu(props) {
       const jetBrainsFont = fontLoader.parse(json);
 
       // Use parsed font as normal text geometry
-      const textGeometry = new TextGeometry('• •', {
-        height: 0.5,
-        size: 3,
+      const textGeometry = new TextGeometry('•  •', {
+        height: 0.2,
+        size: 2,
         font: jetBrainsFont,
       });
       const textMaterial = new THREE.MeshLambertMaterial({color: 0x1E1C1B});
       const textMesh = new THREE.Mesh(textGeometry, textMaterial);
-      textMesh.position.x = -3.3;
-      textMesh.position.y = 27.6;
+      textMesh.position.x = -2.9;
+      textMesh.position.y = 28;
       textMesh.position.z = 10;
 
       // add to spinner group
@@ -191,7 +191,7 @@ export default function Menu(props) {
       const textMaterial = new THREE.MeshLambertMaterial({color: 0x1E1C1B});
       const textMesh = new THREE.Mesh(textGeometry, textMaterial);
       textMesh.position.x = -0.4;
-      textMesh.position.y = 28.6;
+      textMesh.position.y = 28.8;
       textMesh.position.z = 10;
 
       // add to spinner group
