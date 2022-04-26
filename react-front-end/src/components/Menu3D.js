@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import './Menu3D.scss'
 import Help from "./Help";
 import Footer from './Footer';
+import Instructions from "./Instructions";
 
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
@@ -337,6 +338,7 @@ export default function Menu(props) {
   return (
     <>
       <div className='menu-3d'></div>
+      <Instructions />
       <Help showHelp={showHelp} hideHelpPopup={() => setShowHelp(false)} />
       <Footer showHelpPopup={() => setShowHelp(true)} />
     </>

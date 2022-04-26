@@ -1,0 +1,92 @@
+$x-icon-margin: 200px;
+
+@keyframes load-text {
+  0% {
+    opacity: 0;
+    visibility: hidden;
+  }
+  50% {
+    opacity: 0;
+    visibility: hidden;
+  }
+  100% {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+@keyframes load-popup {
+  from {
+    height: 1px;
+  }
+  to {
+    height: 55px;
+  }
+}
+
+.instructions-wrap {
+  position: absolute;
+  bottom: 75px;
+  border: 1px solid black;
+  width: 100%;
+  height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .instructions {
+  
+  
+    width: 80%;
+    // height: 200px;
+    z-index: 20;
+    border: 1px solid red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  
+    // #x-left {
+    //   margin-right: $x-icon-margin;
+    // }
+  
+    // #x-right {
+    //   margin-left: $x-icon-margin;
+    // }
+  
+    background: rgba(52, 52, 52, 0.712);
+    border: 3px solid rgb(52, 52, 52);
+    color: rgb(208, 208, 208);
+    // margin-top: 10px;
+    border-radius: 5px;
+    animation-name: load-popup;
+    animation-timing-function: ease-in;
+    animation-duration: 0.4s;
+    animation-iteration-count: 1;
+    
+  
+    h1 {
+      font-size: 1.5vw;
+      margin: 0;
+      padding: 20px 0px;
+      animation-name: load-text;
+      animation-timing-function: ease-in;
+      animation-duration: 0.5s;
+      animation-iteration-count: 1;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: stretch;
+
+      #x-left, #x-right {
+        flex: 1;
+      }
+    }
+  }
+}
+
+
+
+.popup--failure {
+  background: rgba(243, 112, 112, 0.554);
+  border: 3px solid rgb(243, 112, 112);
+  color: rgb(3, 30, 41);
+}
