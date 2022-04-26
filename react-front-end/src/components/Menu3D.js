@@ -38,22 +38,13 @@ export default function Menu(props) {
     );
     camera.position.set(0, 25, 35);
 
-    const loadingManager = new THREE.LoadingManager( () => {
+    // const loadingManager = new THREE.LoadingManager( () => {
 	
-      const loadingScreen = document.getElementById( 'loading-screen' );
-      loadingScreen.classList.add( 'fade-out' );
-      
-      // // optional: remove loader from DOM via event listener
-      loadingScreen.addEventListener( 'transitionend', onTransitionEnd );
-      
-    } );
+    //   const loadingScreen = document.getElementById( 'loading-screen' );
+    //   loadingScreen.classList.add( 'fade-out' );
+    // } );
 
-    // collada
-
-	  const colladaLoader = new ColladaLoader( loadingManager );
-	  colladaLoader.load( 'https://threejs.org/examples/models/collada/stormtrooper/stormtrooper.dae', ( collada ) => {
-
-    // ----------------------------
+// ----------------------------
     // --- custom model loading ---
     // ----------------------------
     
@@ -232,8 +223,6 @@ export default function Menu(props) {
           scene.add(object);
       });
     }
-
-	} );
 
     // lighting
     hemiLight = new THREE.HemisphereLight(0xffeeb1, 0x080820, 1.5);
@@ -523,10 +512,6 @@ export default function Menu(props) {
     renderer.render(scene, camera);
   }
 
-  function onTransitionEnd( event ) {
-    event.target.remove();
-  }
-
   const onWindowResize = () => {
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
@@ -541,9 +526,9 @@ export default function Menu(props) {
   return (
     <>
       <div className='menu-3d'></div>
-      <section id="loading-screen">
+      {/* <section id="loading-screen">
 	      <div id="loader"></div>
-      </section>
+      </section> */}
       { showInstructions ? <Instructions message='Try again!' hideInstructions={() => setShowInstructions(false)} /> : <></>}
       <Help showHelp={showHelp} hideHelpPopup={() => setShowHelp(false)} />
       <Footer showHelpPopup={() => setShowHelp(true)} />
