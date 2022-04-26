@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import './App.css';
 import Nav from "./Nav.js";
-import Menu3D from "./Menu3D.js";
 import checkAnswer from '../helpers/checkSudokuAnswer';
 import { generateSudoku } from "../helpers/generateSudoku";
 import ModeHandler from './ModeHandler';
@@ -39,8 +38,6 @@ class App extends Component {
       <div className="App">
         <Nav/>
         <ModeHandler checkAnswer={checkAnswer} sudoku={this.getSudoku()}/>
-        {/* <Menu3D/> */}
-        {/* <Sudoku checkAnswer={checkAnswer} sudoku={this.getSudoku()} /> */}
       </div>
     );
   }

@@ -39,12 +39,6 @@ export default function Menu(props) {
     );
     camera.position.set(0, 25, 35);
 
-    // const loadingManager = new THREE.LoadingManager( () => {
-	
-    //   const loadingScreen = document.getElementById( 'loading-screen' );
-    //   loadingScreen.classList.add( 'fade-out' );
-    // } );
-
     // ----------------------------
     // --- custom model loading ---
     // ----------------------------
@@ -83,9 +77,9 @@ export default function Menu(props) {
     // add to spinner group
     spinnerGroup.add(spinner);
 
-    //-----------------
-    //--- Menu Text ---
-    //-----------------
+    // ----------------------
+    // --- Load Menu Text ---
+    // ----------------------
 
     // custom font loader
     const fontLoader = new FontLoader();
@@ -222,6 +216,9 @@ export default function Menu(props) {
       scene.add(textMesh);
     });
 
+    // -----------------------------------
+    // --- generate background puzzles ---
+    // -----------------------------------
     for (let i = 0; i < 500; i++) {
       // eslint-disable-next-line no-loop-func
       loader.load('models/puzzle_piece.gltf', (gltf) => {
@@ -233,11 +230,15 @@ export default function Menu(props) {
       });
     }
 
-    // lighting
+    // -------------------------
+    // --- lighting settings ---
+    // -------------------------
     hemiLight = new THREE.HemisphereLight(0xffeeb1, 0x080820, 1.5);
     scene.add(hemiLight);
 
-
+    // -------------------------
+    // --- renderer settings ---
+    // -------------------------
     renderer = new THREE.WebGLRenderer({ antialias: true });
     renderer.setPixelRatio( window.devicePixelRatio );
     renderer.setSize(window.innerWidth, window.innerHeight);
@@ -248,9 +249,9 @@ export default function Menu(props) {
     light.position.set(0, 25, 30);
     scene.add( light );
 
-    //----------------------------
+    // ---------------------------
     // --- helpers for testing ---
-    //----------------------------
+    // ---------------------------
     // scene.add(new THREE.AxesHelper(500));
     // const controls = new OrbitControls( camera, renderer.domElement );
 
@@ -293,16 +294,6 @@ export default function Menu(props) {
     scene.rotation.x = ((event.clientY - window.innerHeight / 2) / (moveFactor * 2));
   }
 
-  // const centerCam = () => {
-  //   // console.log('SCENE POS', scene.position.x);
-  //   const pos = scene.position.x;
-  //   if (pos > 0.1) {
-  //     scene.position.x -= 0.1;
-  //   } else if (pos < -0.1) {
-  //     scene.position.x += 0.1;
-  //   }
-  // }
-
   const botBlink = (action) => {
     const shouldBlink = generateRandom(0, 1000);
     // console.log(shouldBlink);
@@ -325,14 +316,12 @@ export default function Menu(props) {
         spinnerGroup.rotation.y += (Math.PI / 12);
       } else {
         canInput = true;
-        // console.log(spinnerGroup.rotation.y);
       }
     } else if (rotate && direction === 'left') {
       if (spinnerGroup.rotation.y > 0.01) {
         spinnerGroup.rotation.y -= (Math.PI / 12);
       } else {
         canInput = true;
-        // console.log(spinnerGroup.rotation.y);
       }
     }
   };
@@ -369,9 +358,6 @@ export default function Menu(props) {
   return (
     <>
       <div className='menu-3d'></div>
-      {/* <section id="loading-screen">
-	      <div id="loader"></div>
-      </section> */}
       { showInstructions ? <Instructions message='Try again!' hideInstructions={() => setShowInstructions(false)} /> : <></>}
       <Help showHelp={showHelp} hideHelpPopup={() => setShowHelp(false)} />
       <Footer showHelpPopup={() => setShowHelp(true)} />
