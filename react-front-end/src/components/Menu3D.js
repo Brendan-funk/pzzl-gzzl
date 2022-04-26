@@ -2,10 +2,12 @@ import React, {useState} from "react";
 import './Menu3D.scss'
 import Help from "./Help";
 import Footer from './Footer';
+import Instructions from "./Instructions";
 
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
+import { ColladaLoader } from 'three/examples/jsm/loaders/ColladaLoader';
 
 import { TTFLoader } from 'three/examples/jsm/loaders/TTFLoader';
 import { FontLoader } from 'three/examples/jsm/loaders/FontLoader';
@@ -15,8 +17,9 @@ export default function Menu(props) {
 
   // state for help bubble popup
   const [showHelp, setShowHelp] = useState(false);
+  const [showInstructions, setShowInstructions] = useState(true);
 
-  let scene, camera, renderer, hemiLight, spinner, spinnerGroup, shouldRotate, rotationDir, fov;
+  let scene, camera, renderer, hemiLight, spinner, spinnerGroup, eyesOpenGroup, eyesClosedGroup, shouldRotate, rotationDir, fov;
   let canInput = true;
 
   const init = () => {
@@ -35,33 +38,20 @@ export default function Menu(props) {
     );
     camera.position.set(0, 25, 35);
 
-    // lighting
-    hemiLight = new THREE.HemisphereLight(0xffeeb1, 0x080820, 1.5);
-    scene.add(hemiLight);
-
-
-    renderer = new THREE.WebGLRenderer({ antialias: true });
-    renderer.setPixelRatio( window.devicePixelRatio );
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    document.body.appendChild(renderer.domElement);
-
-
-    const light = new THREE.DirectionalLight( 0xFFFFFF, 0.5 );
-    light.position.set(0, 25, 30);
-    scene.add( light );
-
-    //----------------------------
-    // --- helpers for testing ---
-    //----------------------------
-    // scene.add(new THREE.AxesHelper(500));
-    // const controls = new OrbitControls( camera, renderer.domElement );
+    // const loadingManager = new THREE.LoadingManager( () => {
+	
+    //   const loadingScreen = document.getElementById( 'loading-screen' );
+    //   loadingScreen.classList.add( 'fade-out' );
+    // } );
 
     // ----------------------------
     // --- custom model loading ---
     // ----------------------------
     
-    // new group for spinner models
+    // group declarations
     spinnerGroup = new THREE.Group();
+    eyesOpenGroup = new THREE.Group();
+    eyesClosedGroup = new THREE.Group();
 
     // head model
     var loader = new GLTFLoader();
@@ -109,7 +99,8 @@ export default function Menu(props) {
         size: 10,
         font: jetBrainsFont,
       });
-      const textMaterial = new THREE.MeshNormalMaterial();
+      // const textMaterial = new THREE.MeshNormalMaterial();
+      const textMaterial = new THREE.MeshStandardMaterial({color: 0xF4A675, roughness: 0.5});
       const textMesh = new THREE.Mesh(textGeometry, textMaterial);
       textMesh.position.x = -46;
       textMesh.position.y = 19;
@@ -168,7 +159,7 @@ export default function Menu(props) {
       const jetBrainsFont = fontLoader.parse(json);
 
       // Use parsed font as normal text geometry
-      const textGeometry = new TextGeometry('o  o', {
+      const textGeometry = new TextGeometry('^  ^', {
         height: 0.2,
         size: 2,
         font: jetBrainsFont,
@@ -179,8 +170,10 @@ export default function Menu(props) {
       textMesh.position.y = 28;
       textMesh.position.z = 10;
 
+      eyesOpenGroup.add(textMesh);
+
       // add to spinner group
-      scene.add(textMesh);
+      scene.add(eyesOpenGroup);
     });
 
     // load text for pzzl-bot
@@ -197,11 +190,14 @@ export default function Menu(props) {
       const textMaterial = new THREE.MeshLambertMaterial({color: 0x1E1C1B});
       const textMesh = new THREE.Mesh(textGeometry, textMaterial);
       textMesh.position.x = -2.9;
-      textMesh.position.y = 28;
-      textMesh.position.z = 10;
+      textMesh.position.y = 28.5;
+      // note: z = 10 is visible
+      textMesh.position.z = 8;
+
+      eyesClosedGroup.add(textMesh);
 
       // add to spinner group
-      scene.add(textMesh);
+      scene.add(eyesClosedGroup);
     });
 
     // load text for pzzl-bot
@@ -225,8 +221,6 @@ export default function Menu(props) {
       scene.add(textMesh);
     });
 
-    // generate backgroud puzzle pieces
-
     for (let i = 0; i < 500; i++) {
       // eslint-disable-next-line no-loop-func
       loader.load('models/puzzle_piece.gltf', (gltf) => {
@@ -237,6 +231,27 @@ export default function Menu(props) {
           scene.add(object);
       });
     }
+
+    // lighting
+    hemiLight = new THREE.HemisphereLight(0xffeeb1, 0x080820, 1.5);
+    scene.add(hemiLight);
+
+
+    renderer = new THREE.WebGLRenderer({ antialias: true });
+    renderer.setPixelRatio( window.devicePixelRatio );
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    document.body.appendChild(renderer.domElement);
+
+
+    const light = new THREE.DirectionalLight( 0xFFFFFF, 0.5 );
+    light.position.set(0, 25, 30);
+    scene.add( light );
+
+    //----------------------------
+    // --- helpers for testing ---
+    //----------------------------
+    // scene.add(new THREE.AxesHelper(500));
+    // const controls = new OrbitControls( camera, renderer.domElement );
 
   };
 
@@ -287,6 +302,21 @@ export default function Menu(props) {
   //   }
   // }
 
+  const botBlink = (action) => {
+    const shouldBlink = generateRandom(0, 1000);
+    // console.log(shouldBlink);
+    if (shouldBlink > 995) {
+      setTimeout(() => {
+        eyesOpenGroup.position.z = -2;
+        eyesClosedGroup.position.z = 2;
+      }, 1000);
+      setTimeout(() => {
+        eyesOpenGroup.position.z = 0;
+        eyesClosedGroup.position.z = 0;
+      }, 1500);
+    }
+  };
+
   // rotation function for the animation loop
   const menuRotate = (rotate, direction) => {
     if (rotate && direction === 'right') {
@@ -317,6 +347,7 @@ export default function Menu(props) {
   function animate() {
     requestAnimationFrame(animate);
     menuRotate(shouldRotate, rotationDir);
+    botBlink();
     // centerCam();
     changeFov();
     camera.updateProjectionMatrix();
@@ -337,6 +368,10 @@ export default function Menu(props) {
   return (
     <>
       <div className='menu-3d'></div>
+      {/* <section id="loading-screen">
+	      <div id="loader"></div>
+      </section> */}
+      { showInstructions ? <Instructions message='Try again!' hideInstructions={() => setShowInstructions(false)} /> : <></>}
       <Help showHelp={showHelp} hideHelpPopup={() => setShowHelp(false)} />
       <Footer showHelpPopup={() => setShowHelp(true)} />
     </>
