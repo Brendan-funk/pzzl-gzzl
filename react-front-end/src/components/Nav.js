@@ -13,8 +13,8 @@ export default function Nav(props) {
     <div id="nav-container">
       <nav>
         <ul>
-          <li><a href="#/" id='nav-logo'><FontAwesomeIcon icon={faPuzzlePiece} /></a></li>
-          <li><a href="#/">Pzzl Gzzl</a></li>
+          <li><a href="/" id='nav-logo'><FontAwesomeIcon icon={faPuzzlePiece} /></a></li>
+          <li><a href="/">Pzzl Gzzl</a></li>
           <li><h3>Denda</h3></li>
           <li id='trophy-icon'>
             <SideDrawer/>
