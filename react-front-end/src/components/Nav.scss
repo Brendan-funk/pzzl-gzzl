@@ -12,6 +12,7 @@ nav {
 }
 
 nav ul {
+  border: 1px solid red;
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -25,6 +26,12 @@ li {
 li a {
   text-decoration: none;
   color: black;
+  font-size: 20px;
+}
+
+li:nth-of-type(2) a {
+  // border: 1px solid red;
+  margin-left: 15px;
 }
 
 #trophy-icon {
@@ -34,4 +41,8 @@ li a {
 
 nav h3 {
   display: inline-block;
+}
+
+#nav-logo {
+  font-size: 25px;
 }
