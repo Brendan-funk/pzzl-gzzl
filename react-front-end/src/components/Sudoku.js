@@ -1,9 +1,11 @@
 import React, { useState } from "react";
-import './Sudoku.scss'
+import './Sudoku.scss';
+import './Footer.scss';
 import { generateSudoku } from "../helpers/generateSudoku";
 import Rank from "./Rank";
 import Timer from "./Timer";
 import Failure from "./Failure";
+import Footer from "./Footer";
 import rating from "../helpers/ratingIncrease";
 import axios from 'axios';
 export default function Nav(props) {
@@ -153,6 +155,7 @@ export default function Nav(props) {
         { showFail ? <Failure message='Try again!' hideFailPopup={() => setShowFail(false)} /> : <></>}
       </form>
       <Rank value='+22' rank='359' show={showRank} transition={props.transition}/>
+      <Footer />
     </section>
   );
 }

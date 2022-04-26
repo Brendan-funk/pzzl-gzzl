@@ -15,8 +15,10 @@
 
   #pause-timer {
     position: absolute;
-    bottom: 10px;
-    right: 10px;
+    bottom: 12px;
+    right: 12px;
     font-size: 20px;
+    color: black;
+    z-index: 15;
   }
 }
