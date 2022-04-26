@@ -2,11 +2,11 @@ const rating = function(time, tries) {
   console.log(time);
   console.log(tries);
   let ratingChange = 0;
-  switch(time) {
+  switch (time) {
     case time < 300:
       ratingChange += 25;
       break;
-    case time < 450:
+    case (time < 450):
       ratingChange += 15;
       break;
     case time >= 450:
