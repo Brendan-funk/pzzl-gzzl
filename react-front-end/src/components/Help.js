@@ -13,7 +13,7 @@ export default function Help(props) {
     <div id="help">
       <div id='help-bubble'>
         <div class='text-wrap'>
-          <h1>Welcome! <FontAwesomeIcon id='x-icon' icon={faXmark} /></h1>
+          <h1>Need Help? <FontAwesomeIcon id='x-icon' icon={faXmark} /></h1>
           <p>
             My name is Puzz, and i'm here to help! <br></br><br></br>
             Use the left and right arrow keys ( ← → ) to swap between different puzzles, and hit 'Enter' to select a puzzle.<br></br><br></br>
