@@ -147,7 +147,7 @@ export default function Nav(props) {
             </tr>
           </tbody>
         </table>
-        <button type='submit' onClick={(e) => onSubmit(e)}>
+        <button class="button-54" type='submit' onClick={(e) => onSubmit(e)}>
           Submit
         </button>
         { showFail ? <Failure message='Try again!' hideFailPopup={() => setShowFail(false)} /> : <></>}
