@@ -16,11 +16,6 @@ export default function Nav(props) {
   
   let attempts = 0;
   let sudoku = {}
-  // if (props.practice) {
-  //   sudoku = props.practiceSudoku;
-  // }  else {
-  //   sudoku = props.dailySudoku;
-  // }
   sudoku = props.sudoku;
 
   const puzzleArr = sudoku.puzzle;
@@ -118,7 +113,8 @@ export default function Nav(props) {
 
     return gridArr;
   }
-  
+
+  let gameMode = props.practice ? '(Casual)' : '(Ranked)';
 
   const sudokuRows = generateSudokuGrid();
 
@@ -126,7 +122,7 @@ export default function Nav(props) {
     <section>
       <div className='spacer'></div>
       <form id='sudokuForm'>
-        <Timer title='Sudoku' seconds={seconds} setSeconds={(x) => setSeconds(x)} />
+        <Timer title='Sudoku' gameMode={gameMode} seconds={seconds} setSeconds={(x) => setSeconds(x)} />
         <table cellSpacing={0} cellPadding={0}>
           <tbody>
             <tr>

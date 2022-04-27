@@ -7,7 +7,6 @@ export default function Timer(props) {
   // deconstruct props
   let {seconds, setSeconds} = props;
 
-  // const [seconds, setSeconds] = useState(0);
   const [isActive, setIsActive] = useState(false);
 
   function toggle() {
@@ -40,6 +39,7 @@ export default function Timer(props) {
     <div class='timer'>
         <div id='pause-timer' onClick={toggle}>{isActive ? 'Pause Timer' : 'Resume Timer'}</div>
         <p>{props.title}</p>
+        <p>{props.gameMode}</p>
         <p>{seconds}</p>
     </div>
   );

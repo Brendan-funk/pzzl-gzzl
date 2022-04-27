@@ -200,7 +200,7 @@ export default function Menu(props) {
         size: 2,
         font: jetBrainsFont,
       });
-      const textMaterial = new THREE.MeshLambertMaterial({color: 0x1E1C1B});
+      const textMaterial = new THREE.MeshLambertMaterial({color: 0xCECECE});
       const textMesh = new THREE.Mesh(textGeometry, textMaterial);
       textMesh.position.x = -2.9;
       textMesh.position.y = 28;
@@ -223,10 +223,10 @@ export default function Menu(props) {
         size: 2,
         font: jetBrainsFont,
       });
-      const textMaterial = new THREE.MeshLambertMaterial({color: 0x1E1C1B});
+      const textMaterial = new THREE.MeshLambertMaterial({color: 0x767676});
       const textMesh = new THREE.Mesh(textGeometry, textMaterial);
       textMesh.position.x = -2.9;
-      textMesh.position.y = 28.5;
+      textMesh.position.y = 28.4;
       // note: z = 10 is visible
       textMesh.position.z = 8;
 
@@ -247,7 +247,7 @@ export default function Menu(props) {
         size: 2,
         font: jetBrainsFont,
       });
-      const textMaterial = new THREE.MeshLambertMaterial({color: 0x1E1C1B});
+      const textMaterial = new THREE.MeshLambertMaterial({color: 0xCECECE});
       const textMesh = new THREE.Mesh(textGeometry, textMaterial);
       textMesh.position.x = -0.4;
       textMesh.position.y = 28.8;

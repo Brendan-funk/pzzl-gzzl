@@ -18,7 +18,7 @@ export default function ModeHandler(props) {
     <>
       {mode === HOME && <Menu3D transition={(x) => transition(x)} />}
       {mode === SUDOKU && <Sudoku checkAnswer={props.checkAnswer} sudoku={props.dailySudoku} transition={transition} />}
-      {mode === SUDOKUPRACTICE && <Sudoku checkAnswer={props.checkAnswer} sudoku={props.practiceSudoku} transition={transition} />}
+      {mode === SUDOKUPRACTICE && <Sudoku checkAnswer={props.checkAnswer} practice={true} sudoku={props.practiceSudoku} transition={transition} />}
     </>
   );
 }

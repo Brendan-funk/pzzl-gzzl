@@ -12,7 +12,7 @@ export default function Popup(props) {
       <div className="instructions" onClick={props.hideInstructions}>
         <FontAwesomeIcon icon={faXmark} id='x-left'/>
           <h1>
-            Select a puzzle with the arrow keys and hit enter to play!
+            Select a game mode with the arrow keys and hit enter to play!
           </h1>
         <FontAwesomeIcon icon={faXmark} id='x-right'/>
       </div>
