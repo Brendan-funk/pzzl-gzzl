@@ -22,6 +22,7 @@ export default function Menu(props) {
 
   let scene, camera, renderer, hemiLight, spinner, spinnerGroup, eyesOpenGroup, eyesClosedGroup, shouldRotate, rotationDir, fov;
   let canInput = true;
+  let menuOption = "SUDOKU";
 
   const init = () => {
 
@@ -63,7 +64,6 @@ export default function Menu(props) {
       var object = gltf.scene;
       object.position.set(-0.2, 16.5, 0);
       object.scale.set(0.15, 0.10, 0.15);
-      // object.rotation.x -= 0.07; // adjust rotation for imported model (blender issue)
       scene.add(object);
     });
 
@@ -104,12 +104,32 @@ export default function Menu(props) {
       scene.add( textMesh );
     });
 
+    // ttfLoader.load('fonts3D/jet_brains_mono_regular.ttf', (json) => {
+    //   // parse the custom font
+    //   const jetBrainsFont = fontLoader.parse(json);
+
+    //   // Use parsed font as normal text geometry
+    //   const textGeometry = new TextGeometry('sudoku', {
+    //     height: 1,
+    //     size: 2,
+    //     font: jetBrainsFont,
+    //   });
+    //   const textMaterial = new THREE.MeshLambertMaterial({color: 0xD9DCE2});
+    //   const textMesh = new THREE.Mesh(textGeometry, textMaterial);
+    //   textMesh.position.x = -5;
+    //   textMesh.position.y = 23.8;
+    //   textMesh.position.z = 8;
+
+    //   // add to spinner group
+    //   spinnerGroup.add(textMesh);
+    // });
+
     ttfLoader.load('fonts3D/jet_brains_mono_regular.ttf', (json) => {
       // parse the custom font
       const jetBrainsFont = fontLoader.parse(json);
 
       // Use parsed font as normal text geometry
-      const textGeometry = new TextGeometry('sudoku', {
+      const textGeometry = new TextGeometry('Ranked', {
         height: 1,
         size: 2,
         font: jetBrainsFont,
@@ -124,20 +144,41 @@ export default function Menu(props) {
       spinnerGroup.add(textMesh);
     });
 
+    // ttfLoader.load('fonts3D/jet_brains_mono_regular.ttf', (json) => {
+    //   // parse the custom font
+    //   const jetBrainsFont = fontLoader.parse(json);
+
+    //   // Use parsed font as normal text geometry
+    //   const textGeometry = new TextGeometry('word search', {
+    //     height: 1,
+    //     size: 1.3,
+    //     font: jetBrainsFont,
+    //   });
+    //   const textMaterial = new THREE.MeshLambertMaterial({color: 0xD9DCE2});
+    //   const textMesh = new THREE.Mesh(textGeometry, textMaterial);
+    //   textMesh.position.x = 5.8;
+    //   textMesh.position.y = 24.2;
+    //   textMesh.position.z = -8;
+    //   textMesh.rotation.y = Math.PI;
+
+    //   // add to spinner group
+    //   spinnerGroup.add(textMesh);
+    // });
+
     ttfLoader.load('fonts3D/jet_brains_mono_regular.ttf', (json) => {
       // parse the custom font
       const jetBrainsFont = fontLoader.parse(json);
 
       // Use parsed font as normal text geometry
-      const textGeometry = new TextGeometry('word search', {
+      const textGeometry = new TextGeometry('Casual', {
         height: 1,
-        size: 1.3,
+        size: 2,
         font: jetBrainsFont,
       });
       const textMaterial = new THREE.MeshLambertMaterial({color: 0xD9DCE2});
       const textMesh = new THREE.Mesh(textGeometry, textMaterial);
-      textMesh.position.x = 5.8;
-      textMesh.position.y = 24.2;
+      textMesh.position.x = 5;
+      textMesh.position.y = 23.8;
       textMesh.position.z = -8;
       textMesh.rotation.y = Math.PI;
 
@@ -273,13 +314,15 @@ export default function Menu(props) {
       if (e.key === "ArrowRight") {
         shouldRotate = true;
         rotationDir = 'right';
+        menuOption = 'SUDOKUPRACTICE';
         canInput = false;
       } else if (e.key === "ArrowLeft") {
         shouldRotate = true;
         rotationDir = 'left';
+        menuOption = 'SUDOKU';
         canInput = false;
       } else if (e.key === "Enter") {
-        props.transition("SUDOKU");
+        props.transition(menuOption);
       } else if (e.key === "ArrowUp") {
         
       }

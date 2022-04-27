@@ -7,6 +7,7 @@ import useVisualMode from '../hooks/useVisualMode';
 export default function ModeHandler(props) {
   const HOME = "HOME";
   const SUDOKU = "SUDOKU";
+  const SUDOKUPRACTICE = "SUDOKUPRACTICE";
 
   const { mode, transition} = useVisualMode( HOME );
 
@@ -16,7 +17,8 @@ export default function ModeHandler(props) {
   return (
     <>
       {mode === HOME && <Menu3D transition={(x) => transition(x)} />}
-      {mode === SUDOKU && <Sudoku checkAnswer={props.checkAnswer} sudoku={props.sudoku} transition={transition} />}
+      {mode === SUDOKU && <Sudoku checkAnswer={props.checkAnswer} sudoku={props.dailySudoku} transition={transition} />}
+      {mode === SUDOKUPRACTICE && <Sudoku checkAnswer={props.checkAnswer} sudoku={props.practiceSudoku} transition={transition} />}
     </>
   );
 }

@@ -6,22 +6,25 @@ import Timer from "./Timer";
 import Failure from "./Failure";
 import Footer from "./Footer";
 import rating from "../helpers/ratingIncrease";
+import { generateSudoku } from "../helpers/generateSudoku";
 import axios from 'axios';
 export default function Nav(props) {
 
   const [seconds, setSeconds] = useState(0);
-  let attempts = 0;
   const [showRank, setShowRank] = useState(false);
   const [showFail, setShowFail] = useState(false);
+  
+  let attempts = 0;
   let sudoku = {}
-  if(props.sudoku) {
-    sudoku = props.sudoku;
-  }  else {
-    sudoku = generateSudoku();
-  }
+  // if (props.practice) {
+  //   sudoku = props.practiceSudoku;
+  // }  else {
+  //   sudoku = props.dailySudoku;
+  // }
+  sudoku = props.sudoku;
+
   const puzzleArr = sudoku.puzzle;
   const formattedPuzzle = puzzleArr.map((elm, i) => {
-
     let output = elm;
     if (elm === null) {
       output = <input type='text'  name={`box-${i + 1}`} min='0' max='9' maxLength='1' autocomplete="off"></input>;
@@ -40,8 +43,8 @@ export default function Nav(props) {
       if(document.getElementsByName(string).length !== 0) {
         answers[string] = document.getElementsByName(string)[0].value;
       }
-      
     }
+    
     const isRight = props.checkAnswer(puzzleArr, answers, sudoku.solution);
     if (isRight) {
       // console.log(attempts)

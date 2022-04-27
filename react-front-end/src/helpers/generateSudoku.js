@@ -9,16 +9,18 @@ const change0To9 = function(sudoku) {
       output.push(num);
     }
   }
+
   return output;
 }
+
 const generateSudoku = function () {
-  const temp = sudoku.makepuzzle()
-  const tempSolution = sudoku.solvepuzzle(temp)
+  const temp = sudoku.makepuzzle();
+  const tempSolution = sudoku.solvepuzzle(temp);
+
   return { 
-    puzzle: change0To9(temp.puzzle),
+    puzzle: change0To9(temp),
     solution: change0To9(tempSolution)
   }
-  
 }
 
 module.exports = { generateSudoku };
