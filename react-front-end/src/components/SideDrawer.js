@@ -15,23 +15,37 @@ import getLeaderboard from '../helpers/getLeaderboard';
 const useState = require('react').useState;
 
 export default function SideDrawer() {
-  const {names} = getLeaderboard();
+  
   const [state, setState] = useState({
     top: false,
     left: false,
     bottom: false,
     right: false,
+    names: ['gunga', 'ginga']
   });
   
   
   const toggleDrawer = (anchor, open) => (event) => {
+    
     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
       return;
     }
-
-    setState({ ...state, [anchor]: open });
+    let tempNames = []
+    getLeaderboard()
+    .then(leaders => {
+      let count = 1;
+      for(const leader of leaders.data){
+        tempNames.push(`${count}. ${leader.name} ${leader.rating}`);
+        count++;
+      }
+      console.log(tempNames);
+      
+      setState({ ...state, [anchor]: open , names: tempNames});
+      });
+    
+    console.log(state);
   };
-
+  
   const list = (anchor) => (
     <Box
       sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 250 }}
@@ -40,7 +54,7 @@ export default function SideDrawer() {
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List>
-        {names.map((text, index) => (
+         {state.names.map((text, index) => (  
           <ListItem button key={text}>
             <ListItemText primary={text} />
           </ListItem>

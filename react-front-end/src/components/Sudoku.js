@@ -77,9 +77,13 @@ export default function Nav(props) {
           id: 1,
           ratingChange: deltaRating
         });
+        let rank = 0;
+        getRank()
+        .then(rating => {
+          props.setUserRank(rating.data[0].rating);
+        });
         setRankChange(formatRating);
         setShowRank(true);
-        props.setUserRank(getRank());
       } else {
         setRankChange(formatRating);
         setShowRank(true);

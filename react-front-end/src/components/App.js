@@ -8,8 +8,13 @@ import ModeHandler from './ModeHandler';
 
 function App() {
 
-  const [userRank, setUserRank] = useState(getRank());
-
+  const [userRank, setUserRank] = useState(0);
+  getRank()
+  .then(rating => {
+    setUserRank(rating.data[0].rating);
+  });
+ 
+  
   const getPracticeSudoku = () => {
     const sudoku = generateSudoku();
     console.log('---Sudoku generated---');
