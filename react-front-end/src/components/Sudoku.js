@@ -14,7 +14,12 @@ export default function Nav(props) {
   let attempts = 0;
   const [showRank, setShowRank] = useState(false);
   const [showFail, setShowFail] = useState(false);
-  const sudoku = props.sudoku;
+  let sudoku = {}
+  if(props.sudoku) {
+    sudoku = props.sudoku;
+  }  else {
+    sudoku = generateSudoku();
+  }
   const puzzleArr = sudoku.puzzle;
   const formattedPuzzle = puzzleArr.map((elm, i) => {
 

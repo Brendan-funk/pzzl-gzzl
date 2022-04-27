@@ -1,11 +1,22 @@
 const sudoku = require('sudoku');
 
+const change0To9 = function(sudoku) {
+  let output = [];
+  for (let num of sudoku) {
+    if (num === 0) {
+      output.push(9);
+    } else {
+      output.push(num);
+    }
+  }
+  return output;
+}
 const generateSudoku = function () {
   const temp = sudoku.makepuzzle()
-  console.log(sudoku.solvepuzzle(temp))
+  const tempSolution = sudoku.solvepuzzle(temp)
   return { 
-    puzzle: temp,
-    solution: sudoku.solvepuzzle(temp)
+    puzzle: change0To9(temp.puzzle),
+    solution: change0To9(tempSolution)
   }
   
 }
