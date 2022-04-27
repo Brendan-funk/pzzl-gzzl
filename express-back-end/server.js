@@ -41,13 +41,15 @@ App.post('/rating', (req, res) => {
   const userId = bodyObj.id;
   db.query(`SELECT rating FROM users WHERE id = $1`, [userId])
   .then(temp_rating => {
-    console.log(temp_rating.rows[0].rating);
+    console.log('HERE');
     tempRating = temp_rating.rows[0].rating;
     newRating = tempRating + ratingChange;
     db.query(`UPDATE users
       SET rating = $1
       WHERE id = $2`, [newRating, userId])
-  });
+      res.end(JSON.stringify(newRating));
+  })
+  
 });
 
 App.get('/leaderboard', (req, res) => {

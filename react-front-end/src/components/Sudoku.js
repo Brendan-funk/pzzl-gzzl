@@ -14,10 +14,11 @@ export default function Nav(props) {
   const [showRank, setShowRank] = useState(false);
   const [showFail, setShowFail] = useState(false);
   const [rankChange, setRankChange] = useState('');
+  const [attempts , setAttempts] = useState(1);
   // const [userRank, setUserRank] = useState('');
   // const {userRank, setUserRank} = props;
   
-  let attempts = 0;
+ 
   let sudoku = {}
   sudoku = props.sudoku;
 
@@ -34,7 +35,7 @@ export default function Nav(props) {
   const onSubmit = function(event) {
     event.preventDefault();
     setShowFail(false);
-    attempts++;
+    setAttempts(attempts+1);
     let answers = {}
     for (let i = 1; i < 82; i++) {
       const string = 'box-'+i;
@@ -64,23 +65,22 @@ export default function Nav(props) {
   const testSubmit = function(event) {
     event.preventDefault();
     setShowFail(false);
-
+    setAttempts(attempts + 1);
     const secondsTest = 300;
-    const attemptsTest = 1;
+    const attemptsTest = 2;
     const isRight = true;
     if (isRight) {
-      const deltaRating = rating(secondsTest, attemptsTest);
+      const deltaRating = rating(seconds, attempts);
+      console.log(deltaRating);
       const formatRating = (deltaRating >= 0) ? `+${deltaRating}` : `-${deltaRating}`;
       if (!props.practice) {
         // console.log('rating change', deltaRating);
         axios.post(`http://localhost:8001/rating`, {
           id: 1,
           ratingChange: deltaRating
-        });
-        let rank = 0;
-        getRank()
-        .then(rating => {
-          props.setUserRank(rating.data[0].rating);
+        })
+        .then(res => {
+          props.setUserRank(res.data);         
         });
         setRankChange(formatRating);
         setShowRank(true);

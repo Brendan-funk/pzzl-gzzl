@@ -15,16 +15,16 @@ const rating = function(time, tries) {
   }
 
   switch(true) {
-    case tries === 1:
+    case (tries === 1):
       ratingChange += 25;
       break;
-    case tries === 2:
+    case (tries === 2):
       ratingChange += 15;
       break;
-    case tries === 3:
+    case (tries === 3):
       ratingChange += 5;
       break;
-    case tries > 3:
+    case (tries > 3):
       ratingChange -= (tries - 3) * 5;
       break;
     default : 
