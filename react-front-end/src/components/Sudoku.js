@@ -14,7 +14,8 @@ export default function Nav(props) {
   const [showRank, setShowRank] = useState(false);
   const [showFail, setShowFail] = useState(false);
   const [rankChange, setRankChange] = useState('');
-  const [userRank, setUserRank] = useState('');
+  // const [userRank, setUserRank] = useState('');
+  // const {userRank, setUserRank} = props;
   
   let attempts = 0;
   let sudoku = {}
@@ -76,10 +77,13 @@ export default function Nav(props) {
           id: 1,
           ratingChange: deltaRating
         });
+        setRankChange(formatRating);
+        setShowRank(true);
+        props.setUserRank(getRank());
+      } else {
+        setRankChange(formatRating);
+        setShowRank(true);
       }
-      setRankChange(formatRating);
-      setShowRank(true);
-      setUserRank(getRank());
     } else {
       setShowFail(true);
     }
@@ -193,7 +197,7 @@ export default function Nav(props) {
         </button>
         { showFail ? <Failure message='Try again!' hideFailPopup={() => setShowFail(false)} /> : <></>}
       </form>
-      <Rank userRank={userRank} value={rankChange} show={showRank} transition={props.transition} practice={props.practice} />
+      <Rank userRank={props.userRank} value={rankChange} show={showRank} transition={props.transition} practice={props.practice} />
       <Footer />
     </section>
   );

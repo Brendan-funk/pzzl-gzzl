@@ -15,7 +15,7 @@ export default function Nav(props) {
         <ul>
           <li><a href="/" id='nav-logo'><FontAwesomeIcon icon={faPuzzlePiece} /></a></li>
           <li><a href="/">Pzzl Gzzl</a></li>
-          <li><h1>Denda</h1><p>-</p><h2>Rating 256</h2></li>
+          <li><h1>Denda</h1><p>-</p><h2>Rating {props.userRank}</h2></li>
           <li id='trophy-icon'>
             <SideDrawer/>
           </li>

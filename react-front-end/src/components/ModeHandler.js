@@ -11,13 +11,10 @@ export default function ModeHandler(props) {
 
   const { mode, transition} = useVisualMode( HOME );
 
-
-  // transition(SUDOKU);
- 
   return (
     <>
       {mode === HOME && <Menu3D transition={(x) => transition(x)} />}
-      {mode === SUDOKU && <Sudoku checkAnswer={props.checkAnswer} sudoku={props.dailySudoku} transition={transition} />}
+      {mode === SUDOKU && <Sudoku userRank={props.userRank} setUserRank={props.setUserRank} checkAnswer={props.checkAnswer} sudoku={props.dailySudoku} transition={transition} />}
       {mode === SUDOKUPRACTICE && <Sudoku checkAnswer={props.checkAnswer} practice={true} sudoku={props.practiceSudoku} transition={transition} />}
     </>
   );
