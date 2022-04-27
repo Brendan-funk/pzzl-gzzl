@@ -39,4 +39,5 @@ const checkAnswer = function(puzz,answers, key) {
     return false;
   }
 }
+
 module.exports = checkAnswer;

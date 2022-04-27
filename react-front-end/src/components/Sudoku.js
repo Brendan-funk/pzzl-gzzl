@@ -12,6 +12,7 @@ export default function Nav(props) {
   const [seconds, setSeconds] = useState(0);
   const [showRank, setShowRank] = useState(false);
   const [showFail, setShowFail] = useState(false);
+  const [rankChange, setRankChange] = useState('');
   
   let attempts = 0;
   let sudoku = {}
@@ -53,6 +54,31 @@ export default function Nav(props) {
       setShowFail(true);
     }
   }
+
+  // TEST RATING SYSTEM temp code
+  const testSubmit = function(event) {
+    event.preventDefault();
+    setShowFail(false);
+
+    const secondsTest = 1;
+    const attemptsTest = 1;
+    const isRight = true;
+    if (isRight) {
+      const deltaRating = rating(secondsTest, attemptsTest);
+      const formatRating = (deltaRating >= 0) ? `+${deltaRating}` : `-${deltaRating}`;
+      // console.log('rating change', deltaRating);
+      setRankChange(formatRating);
+      axios.post(`http://localhost:8001/rating`, {
+        id: 1,
+        ratingChange: deltaRating
+      });
+      // console.log('HIT');
+      setShowRank(true);
+    } else {
+      setShowFail(true);
+    }
+  }
+
   const generateSudokuGrid = () => {
     const row1 = [];
     const row2 = [];
@@ -156,9 +182,12 @@ export default function Nav(props) {
         <button class="button-54" type='submit' onClick={(e) => onSubmit(e)}>
           Submit
         </button>
+        <button class="button-54" type='submit' onClick={testSubmit}>
+          Test
+        </button>
         { showFail ? <Failure message='Try again!' hideFailPopup={() => setShowFail(false)} /> : <></>}
       </form>
-      <Rank value='+24'  show={showRank} transition={props.transition}/>
+      <Rank value={rankChange}  show={showRank} transition={props.transition}/>
       <Footer />
     </section>
   );

@@ -1,8 +1,8 @@
 const rating = function(time, tries) {
-  console.log(time);
-  console.log(tries);
+  console.log('time', time);
+  console.log('tries', tries);
   let ratingChange = 0;
-  switch (time) {
+  switch (true) {
     case time < 300:
       ratingChange += 25;
       break;
@@ -14,9 +14,10 @@ const rating = function(time, tries) {
     break;
     default :
     ratingChange += 12;
+    console.log('default hit');
   }
 
-  switch(tries) {
+  switch(true) {
     case tries === 1:
       ratingChange += 25;
       break;
@@ -31,6 +32,7 @@ const rating = function(time, tries) {
       break;
     default : 
     ratingChange += 12;
+    console.log('default hit');
   }
   return ratingChange;
 }
