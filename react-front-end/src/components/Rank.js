@@ -5,18 +5,23 @@ import getRank from "../helpers/getRank";
 
 
 export default function Rank(props) {
-  const {rank} = getRank();
+  // const rank = getRank();
   // if props.show is true, the componenet will render
   const blurClass = classNames('blur', {
     'blur--show': props.show
  });
 
+ let rankTitleCard = "Ranked Rating";
+ if (props.practice) {
+  rankTitleCard = "You would have recieved";
+ }
+
   return (
     <div className={blurClass} >
       <div id="rank">
         <div id='rank-title'>
-          <h1>Ranked Rating</h1>
-          <p>{rank}</p>
+          <h1>{rankTitleCard}</h1>
+          <p>{!props.practice ? props.userRank : <></>}</p>
         </div>
         <div class='wrapper'>
           <h2>{props.value}</h2>

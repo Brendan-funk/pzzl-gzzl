@@ -7,12 +7,14 @@ import Failure from "./Failure";
 import Footer from "./Footer";
 import rating from "../helpers/ratingIncrease";
 import axios from 'axios';
+import getRank from "../helpers/getRank";
 export default function Nav(props) {
 
   const [seconds, setSeconds] = useState(0);
   const [showRank, setShowRank] = useState(false);
   const [showFail, setShowFail] = useState(false);
   const [rankChange, setRankChange] = useState('');
+  const [userRank, setUserRank] = useState('');
   
   let attempts = 0;
   let sudoku = {}
@@ -77,6 +79,7 @@ export default function Nav(props) {
       }
       setRankChange(formatRating);
       setShowRank(true);
+      setUserRank(getRank());
     } else {
       setShowFail(true);
     }
@@ -190,7 +193,7 @@ export default function Nav(props) {
         </button>
         { showFail ? <Failure message='Try again!' hideFailPopup={() => setShowFail(false)} /> : <></>}
       </form>
-      <Rank value={rankChange}  show={showRank} transition={props.transition}/>
+      <Rank userRank={userRank} value={rankChange} show={showRank} transition={props.transition} practice={props.practice} />
       <Footer />
     </section>
   );

@@ -26,8 +26,7 @@ const sudokuSolutionCheck = function(submission, answer) {
 }
 
 const checkAnswer = function(puzz,answers, key) {
-  
-  console.log(answers);
+  // console.log(answers);
   const guess = formatGuess(puzz,answers);
   const isRight = sudokuSolutionCheck(guess,key);
   console.log('guess', guess);
