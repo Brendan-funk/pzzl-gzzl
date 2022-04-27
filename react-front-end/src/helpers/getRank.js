@@ -14,5 +14,5 @@ export default function getRank() {
     });
   }, [])
   
-  return {rank};
+  return rank;
 }

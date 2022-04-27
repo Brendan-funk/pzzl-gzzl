@@ -42,12 +42,14 @@ export default function Nav(props) {
     
     const isRight = props.checkAnswer(puzzleArr, answers, sudoku.solution);
     if (isRight) {
-      // console.log(attempts)
       const deltaRating = rating(seconds, attempts);
-      // console.log(deltaRating);
+      // format output for html display
+      const formatRating = (deltaRating >= 0) ? `+${deltaRating}` : `-${deltaRating}`;
+      setRankChange(formatRating);
+
       axios.post(`http://localhost:8001/rating`, {
         id: 1,
-        ratingChange: deltaRating 
+        ratingChange: deltaRating
       });
       setShowRank(true);
     } else {
@@ -60,19 +62,20 @@ export default function Nav(props) {
     event.preventDefault();
     setShowFail(false);
 
-    const secondsTest = 1;
+    const secondsTest = 300;
     const attemptsTest = 1;
     const isRight = true;
     if (isRight) {
       const deltaRating = rating(secondsTest, attemptsTest);
       const formatRating = (deltaRating >= 0) ? `+${deltaRating}` : `-${deltaRating}`;
-      // console.log('rating change', deltaRating);
+      if (!props.practice) {
+        // console.log('rating change', deltaRating);
+        axios.post(`http://localhost:8001/rating`, {
+          id: 1,
+          ratingChange: deltaRating
+        });
+      }
       setRankChange(formatRating);
-      axios.post(`http://localhost:8001/rating`, {
-        id: 1,
-        ratingChange: deltaRating
-      });
-      // console.log('HIT');
       setShowRank(true);
     } else {
       setShowFail(true);
