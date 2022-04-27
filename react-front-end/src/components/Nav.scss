@@ -52,6 +52,20 @@ li:nth-of-type(3) {
   font-size: 1.3em;
 }
 
-nav h3 {
+nav h1, h2, p {
   display: inline-block;
+}
+
+nav h1 {
+  font-size: 20px;
+  font-weight: 400;
+}
+
+nav p {
+  margin: 0px 12px;
+}
+
+nav h2 {
+  font-size: 20px;
+  font-weight: bold;
 }
