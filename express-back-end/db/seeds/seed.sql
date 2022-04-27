@@ -1,7 +1,7 @@
 INSERT INTO users (name, email, password, rating)
 VALUES ('Denda', 'test@gmail.com', 'gunga', 1400),
-  ('Elo', 'hello@gmail.com', 'ginga', 1410)
-  /*('gunga', 'hello@gmail.com', 'ginga', 800), 
+  ('Elo', 'hello@gmail.com', 'ginga', 1410),
+  ('gunga', 'hello@gmail.com', 'ginga', 800), 
   ('ginga', 'hello@gmail.com', 'ginga', 1300),
   ('Keem', 'hello@gmail.com', 'ginga', 900),
   ('Juker', 'hello@gmail.com', 'ginga', 901),
@@ -18,7 +18,7 @@ VALUES ('Denda', 'test@gmail.com', 'gunga', 1400),
   ('Steen', 'hello@gmail.com', 'ginga', 1101),
   ('AggDidIt', 'hello@gmail.com', 'ginga', 101),
   ('Bole_Crandsma', 'hello@gmail.com', 'ginga', 167),
-  ('Wagner', 'hello@gmail.com', 'ginga', 1401)*/;
+  ('Wagner', 'hello@gmail.com', 'ginga', 1401);
   
 INSERT INTO friendships (senderId, recieverId)
 VALUES (1,2); 
