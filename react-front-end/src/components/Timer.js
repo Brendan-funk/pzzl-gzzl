@@ -14,6 +14,7 @@ export default function Timer(props) {
     setIsActive(!isActive);
   }
 
+  // eslint-disable-next-line no-unused-vars
   function reset() {
     setSeconds(0);
     setIsActive(false);

@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import './Sudoku.scss';
 import './Footer.scss';
-import { generateSudoku } from "../helpers/generateSudoku";
 import Rank from "./Rank";
 import Timer from "./Timer";
 import Failure from "./Failure";
@@ -45,9 +44,9 @@ export default function Nav(props) {
     }
     const isRight = props.checkAnswer(puzzleArr, answers, sudoku.solution);
     if (isRight) {
-      console.log(attempts)
+      // console.log(attempts)
       const deltaRating = rating(seconds, attempts);
-      console.log(deltaRating);
+      // console.log(deltaRating);
       axios.post(`http://localhost:8001/rating`, {
         id: 1,
         ratingChange: deltaRating 
