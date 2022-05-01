@@ -5,6 +5,6 @@ VALUES ('Denda', 'test@gmail.com', 'gunga', 1500),
 INSERT INTO friendships (senderId, recieverId)
 VALUES (1,2); 
 
-INSERT INTO puzzles (puzzle_type, date_created)
-VALUES ('Sudoku', '2022-02-24'), 
-  ('Crossword', '2022-02-25');
+INSERT INTO puzzles (puzzle_type, date_created, puzzle, answer_key)
+VALUES ('Sudoku', '2022-02-24', 'testpuzzle', 'testanswer'), 
+  ('Crossword', '2022-02-25', 'testpuzzle', 'testanswer');

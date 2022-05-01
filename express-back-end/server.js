@@ -4,6 +4,8 @@ const BodyParser = require('body-parser');
 const PORT = 8001;
 const testRoutes = require('./routes/sudoku');
 const cors = require('cors');
+const schedule = require('node-schedule');
+const LocalDate = require('js-joda').LocalDate;
 // Express Configuration
 App.use(BodyParser.urlencoded({ extended: false }));
 App.use(BodyParser.json());
@@ -16,6 +18,8 @@ App.use(
 //Database Setup
 const { Pool } = require("pg");
 const bodyParser = require('body-parser');
+const { generatePuzzle } = require('./helpers');
+const { LocalDateTime } = require('js-joda');
 const db = new Pool( {
   host: 'localhost',
   port: 5432,
@@ -27,6 +31,16 @@ const db = new Pool( {
 db.connect()
 .then(res => console.log('database connected'))
 .catch(err => console.log(err));
+
+schedule.scheduleJob('0 0 * * *', () => {
+  DateTimeFormatter.ofPattern("yyyy--MM-dd");
+  dailyPzzl = generatePuzzle();
+  const pzzlString = JSON.stringify(dailyPzzl.puzzle);
+  const answerString = JSON.stringify(dailyPzzl.solution);
+  db.query(`INSERT INTO puzzles (puzzle_type, date_created, puzzle, answer_key)
+            VALUES ('Sudoku', ${LocalDate.now().format(formatter).toString()}, ${pzzlString}, ${answerString});`)
+  .then(console.log('done'));
+});
 // Sample GET route
 App.get('/api/data', (req, res) => res.json({
   message: "Seems to work!",
