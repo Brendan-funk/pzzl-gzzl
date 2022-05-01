@@ -12,7 +12,10 @@
   "dependencies": {
     "body-parser": "^1.18.3",
     "cors": "^2.8.5",
+    "cron": "^1.8.2",
     "express": "^4.16.4",
+    "js-joda": "^1.11.0",
+    "node-schedule": "^2.1.0",
     "nodemon": "^1.18.7",
     "pg": "^8.7.3",
     "sudoku": "0.0.3"
