@@ -37,7 +37,7 @@ export default function Timer(props) {
 
   return (
     <div class='timer'>
-        <div id='pause-timer' onClick={toggle}>{isActive ? 'Pause Timer' : 'Resume Timer'}</div>
+        {/* <div id='pause-timer' onClick={toggle}>{isActive ? 'Pause Timer' : 'Resume Timer'}</div> */}
         <p>{props.title}</p>
         <p>{props.gameMode}</p>
         <p>{seconds}</p>
