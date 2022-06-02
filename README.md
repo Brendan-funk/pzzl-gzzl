@@ -12,6 +12,15 @@ A ranked puzzle application that allows users to complete daily challenges for r
 - Global Leaderboard
   - View the leaderboard to see the top puzzle players
 
+## Screenshots
+![Home Page](https://github.com/ethanloewen/pzzl-gzzl/blob/main/documents/pzzl_main.png?raw=true)
+
+![Ranked Puzzle](https://github.com/ethanloewen/pzzl-gzzl/blob/main/documents/pzzl_sudoku_ranked.png?raw=true)
+
+![Puzzle Complete](https://github.com/ethanloewen/pzzl-gzzl/blob/main/documents/pzzl_win.png?raw=true)
+
+![Casual Puzzle](https://github.com/ethanloewen/pzzl-gzzl/blob/main/documents/pzzl_casual.png?raw=true)
+
 ## **Client**
 ```sh
 cd react-front-end
