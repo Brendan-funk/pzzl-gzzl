@@ -15,10 +15,10 @@ export default function Nav(props) {
   const [rankChange, setRankChange] = useState('');
   const [attempts , setAttempts] = useState(1);
  
-  let sudoku = {}
+  let sudoku = {};
   sudoku = props.sudoku;
-
   const puzzleArr = sudoku.puzzle;
+
   // map input tags to sudoku numbers
   const formattedPuzzle = puzzleArr.map((elm, i) => {
     let output = elm;

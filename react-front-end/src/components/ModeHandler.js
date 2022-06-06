@@ -3,7 +3,6 @@ import Menu3D from "./Menu3D.js";
 import Sudoku from "./Sudoku.js";
 import useVisualMode from '../hooks/useVisualMode';
 
-
 export default function ModeHandler(props) {
   const HOME = "HOME";
   const SUDOKU = "SUDOKU";
