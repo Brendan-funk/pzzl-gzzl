@@ -65,7 +65,7 @@ App.get('/:id/rating', (req,res) => {
   
   db.query('SELECT rating FROM users WHERE id = $1;', [req.params.id])
   .then(rating => {
-    console.log(rating.rows);
+    // console.log(rating.rows);
     res.json(rating.rows);
   })
 })

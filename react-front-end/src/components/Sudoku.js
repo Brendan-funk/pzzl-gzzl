@@ -14,14 +14,12 @@ export default function Nav(props) {
   const [showFail, setShowFail] = useState(false);
   const [rankChange, setRankChange] = useState('');
   const [attempts , setAttempts] = useState(1);
-  // const [userRank, setUserRank] = useState('');
-  // const {userRank, setUserRank} = props;
-  
  
   let sudoku = {}
   sudoku = props.sudoku;
 
   const puzzleArr = sudoku.puzzle;
+  // map input tags to sudoku numbers
   const formattedPuzzle = puzzleArr.map((elm, i) => {
     let output = elm;
     if (elm === null) {
@@ -60,13 +58,11 @@ export default function Nav(props) {
     }
   }
 
-  // TEST RATING SYSTEM temp code
+  // TEST RATING SYSTEM for 'test' button
   const testSubmit = function(event) {
     event.preventDefault();
     setShowFail(false);
     setAttempts(attempts + 1);
-    const secondsTest = 300;
-    const attemptsTest = 2;
     const isRight = true;
     if (isRight) {
       const deltaRating = rating(seconds, attempts);
