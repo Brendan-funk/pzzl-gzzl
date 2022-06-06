@@ -38,12 +38,11 @@ App.get('/', (req, res) => {
 App.post('/rating', (req, res) => {
   let tempRating = 0;
   let bodyObj = req.body;
-  console.log(bodyObj);
+  // console.log(bodyObj);
   const ratingChange = bodyObj.ratingChange;
   const userId = bodyObj.id;
   db.query(`SELECT rating FROM users WHERE id = $1`, [userId])
   .then(temp_rating => {
-    console.log('HERE');
     tempRating = temp_rating.rows[0].rating;
     newRating = tempRating + ratingChange;
     db.query(`UPDATE users

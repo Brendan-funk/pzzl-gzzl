@@ -31,7 +31,7 @@ const rating = function(time, tries) {
     default : 
     ratingChange += 12;
   }
-  
+
   return ratingChange;
 }
 module.exports = rating;
