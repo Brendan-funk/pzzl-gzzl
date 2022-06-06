@@ -7,7 +7,6 @@ import Failure from "./Failure";
 import Footer from "./Footer";
 import rating from "../helpers/ratingIncrease";
 import axios from 'axios';
-import getRank from "../helpers/getRank";
 export default function Nav(props) {
 
   const [seconds, setSeconds] = useState(0);
@@ -51,7 +50,7 @@ export default function Nav(props) {
       const formatRating = (deltaRating >= 0) ? `+${deltaRating}` : `-${deltaRating}`;
       setRankChange(formatRating);
 
-      axios.post(`http://localhost:8001/rating`, {
+      axios.post(`http://localhost:8080/rating`, {
         id: 1,
         ratingChange: deltaRating
       });
@@ -75,7 +74,7 @@ export default function Nav(props) {
       const formatRating = (deltaRating >= 0) ? `+${deltaRating}` : `-${deltaRating}`;
       if (!props.practice) {
         // console.log('rating change', deltaRating);
-        axios.post(`http://localhost:8001/rating`, {
+        axios.post(`http://localhost:8080/rating`, {
           id: 1,
           ratingChange: deltaRating
         })

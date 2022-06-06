@@ -1,7 +1,7 @@
 const axios = require('axios');
 export default function getLeaderboard() {
   
-  return axios.get("http://localhost:8001/leaderboard")
+  return axios.get("http://localhost:8080/leaderboard")
   /*.then(leaders => {
     let count = 1;
     for(const leader of leaders.data){

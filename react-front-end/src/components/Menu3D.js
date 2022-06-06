@@ -81,7 +81,7 @@ export default function Menu(props) {
     // --- Load Menu Text ---
     // ----------------------
 
-    // custom font loader
+    // 'Pzzl Gzzl' text (custom font loader)
     const fontLoader = new FontLoader();
     const ttfLoader = new TTFLoader();
     ttfLoader.load('fonts3D/jet_brains_mono_regular.ttf', (json) => {
@@ -104,26 +104,7 @@ export default function Menu(props) {
       scene.add( textMesh );
     });
 
-    // ttfLoader.load('fonts3D/jet_brains_mono_regular.ttf', (json) => {
-    //   // parse the custom font
-    //   const jetBrainsFont = fontLoader.parse(json);
-
-    //   // Use parsed font as normal text geometry
-    //   const textGeometry = new TextGeometry('sudoku', {
-    //     height: 1,
-    //     size: 2,
-    //     font: jetBrainsFont,
-    //   });
-    //   const textMaterial = new THREE.MeshLambertMaterial({color: 0xD9DCE2});
-    //   const textMesh = new THREE.Mesh(textGeometry, textMaterial);
-    //   textMesh.position.x = -5;
-    //   textMesh.position.y = 23.8;
-    //   textMesh.position.z = 8;
-
-    //   // add to spinner group
-    //   spinnerGroup.add(textMesh);
-    // });
-
+    // 'Ranked' text
     ttfLoader.load('fonts3D/jet_brains_mono_regular.ttf', (json) => {
       // parse the custom font
       const jetBrainsFont = fontLoader.parse(json);
@@ -144,27 +125,7 @@ export default function Menu(props) {
       spinnerGroup.add(textMesh);
     });
 
-    // ttfLoader.load('fonts3D/jet_brains_mono_regular.ttf', (json) => {
-    //   // parse the custom font
-    //   const jetBrainsFont = fontLoader.parse(json);
-
-    //   // Use parsed font as normal text geometry
-    //   const textGeometry = new TextGeometry('word search', {
-    //     height: 1,
-    //     size: 1.3,
-    //     font: jetBrainsFont,
-    //   });
-    //   const textMaterial = new THREE.MeshLambertMaterial({color: 0xD9DCE2});
-    //   const textMesh = new THREE.Mesh(textGeometry, textMaterial);
-    //   textMesh.position.x = 5.8;
-    //   textMesh.position.y = 24.2;
-    //   textMesh.position.z = -8;
-    //   textMesh.rotation.y = Math.PI;
-
-    //   // add to spinner group
-    //   spinnerGroup.add(textMesh);
-    // });
-
+    // 'Casual' text
     ttfLoader.load('fonts3D/jet_brains_mono_regular.ttf', (json) => {
       // parse the custom font
       const jetBrainsFont = fontLoader.parse(json);
@@ -189,7 +150,7 @@ export default function Menu(props) {
     // add spinner group to scene
     scene.add(spinnerGroup);
 
-    // load text for pzzl-bot
+    // load text for pzzl-bot (eyes open)
     ttfLoader.load('fonts3D/jet_brains_mono_regular.ttf', (json) => {
       // parse the custom font
       const jetBrainsFont = fontLoader.parse(json);
@@ -212,7 +173,7 @@ export default function Menu(props) {
       scene.add(eyesOpenGroup);
     });
 
-    // load text for pzzl-bot
+    // load text for pzzl-bot (eyes closed)
     ttfLoader.load('fonts3D/jet_brains_mono_regular.ttf', (json) => {
       // parse the custom font
       const jetBrainsFont = fontLoader.parse(json);

@@ -1,7 +1,7 @@
 const Express = require('express');
 const App = Express();
 const BodyParser = require('body-parser');
-const PORT = 8001;
+const PORT = 8080;
 const cors = require('cors');
 
 // Express Configuration
@@ -12,7 +12,8 @@ App.use(
   cors({
     origin: "*",
   })
-)
+);
+
 //Database Setup
 const { Pool } = require("pg");
 const bodyParser = require('body-parser');
@@ -30,8 +31,9 @@ db.connect()
 .then(res => console.log('database connected'))
 .catch(err => console.log(err));
 
-
-
+App.get('/', (req, res) => {
+  res.send('Hello World!')
+})
 
 App.post('/rating', (req, res) => {
   let tempRating = 0;
@@ -49,7 +51,6 @@ App.post('/rating', (req, res) => {
       WHERE id = $2`, [newRating, userId])
       res.end(JSON.stringify(newRating));
   })
-  
 });
 
 App.get('/leaderboard', (req, res) => {
