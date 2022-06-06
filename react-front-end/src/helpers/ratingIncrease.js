@@ -1,3 +1,4 @@
+// logic for determening a user puzzle rating
 const rating = function(time, tries) {
   let ratingChange = 0;
   switch (true) {
@@ -30,6 +31,7 @@ const rating = function(time, tries) {
     default : 
     ratingChange += 12;
   }
+  
   return ratingChange;
 }
 module.exports = rating;
